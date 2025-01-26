@@ -10,3 +10,10 @@ https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian?tabs=dotnet9#
 dotnet tool install --global dotnet-ef
 ```
 
+## Tipus d'instal·lació
+
+* Web application
+* Desktop application
+* Console application 
+
+

@@ -3,7 +3,7 @@
 ## Arquitectura
 
 * CoreCLR (Common Language Runtime) -> Executció del codi
-* CoreFX: Framework Class Library -> 
+* CoreFX: Framework Class Library -> Classes per a la construcció de les aplicacions
 
 # EF
 ## Instal·lació / Actualització SDK

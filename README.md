@@ -16,4 +16,7 @@ dotnet tool install --global dotnet-ef
 * Desktop application
 * Console application 
 
-
+# Visual Studio Code
+## Extensions
+![Extensions instal·lades VSCode](./Docs/Extensions instal·lades VSCode.png)
+![Extensions instal·lades VSCode](./Docs/Extensions instal·lades VSCodeimage-1.png)

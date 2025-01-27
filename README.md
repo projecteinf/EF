@@ -8,6 +8,7 @@ Per a determinar la versió
 
 ```bash
 dotnet --version
+dotnet --info
 ``` 
 
 ## Arquitectura

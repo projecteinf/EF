@@ -1,3 +1,11 @@
+# .NET Core
+
+## Arquitectura
+
+* CoreCLR: Common Language Runtime
+** Execution of code
+* CoreFX: Framework Class Library
+
 # EF
 ## Instal·lació / Actualització SDK
 

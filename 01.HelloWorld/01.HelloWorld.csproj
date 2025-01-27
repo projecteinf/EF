@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+    <LangVersion>latestmajor</LangVersion>
     <TargetFramework>net9.0</TargetFramework>
     <RootNamespace>_01.HelloWorld</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>

@@ -5,6 +5,10 @@
 * CoreCLR (Common Language Runtime) -> Executció del codi
 * CoreFX: Framework Class Library -> Classes per a la construcció de les aplicacions
 
+## Compilació
+
+Source code -> Roslyn (C# Compiler) -> Intermediate Language (IL) -> .dll / .exe file -> Executat per la màquina virtual .Net Core (CoreCLR) 
+
 # EF
 
 Object Relational Mapping (ORM)

@@ -5,6 +5,10 @@
 * CoreCLR (Common Language Runtime) -> Executció del codi
 * CoreFX: Framework Class Library -> Classes per a la construcció de les aplicacions
 
+# Windows Desktop Pack
+
+https://dotnet.microsoft.com/download/dotnet/6.0
+
 # EF
 ## Instal·lació / Actualització SDK
 

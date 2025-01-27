@@ -6,6 +6,12 @@
 * CoreFX: Framework Class Library -> Classes per a la construcció de les aplicacions
 
 # EF
+
+Object Relational Mapping (ORM)
+* Programem amb Objectes
+* Guardem les dades amb taules i relacions entre les taules
+* Sistema per a facilitar la conversió entre objecte i taula i viceversa
+
 ## Instal·lació / Actualització SDK
 
 https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian?tabs=dotnet9#debian-12

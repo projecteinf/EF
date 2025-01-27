@@ -9,7 +9,22 @@
 
 https://dotnet.microsoft.com/download/dotnet/6.0
 
+# Windows Desktop Pack
+
+https://dotnet.microsoft.com/download/dotnet/6.0
+
+## Compilació
+
+Source code -> Roslyn (C# Compiler) -> Intermediate Language (IL) -> .dll / .exe file -> Executat per la màquina virtual .Net Core (CoreCLR) 
+CoreCLR carrega IL code (.dll o .exe) / JIT (just in Time) compiler - Conversió a instruccions màquina (CPU)  
+
 # EF
+
+Object Relational Mapping (ORM)
+* Programem amb Objectes
+* Guardem les dades amb taules i relacions entre les taules
+* Sistema per a facilitar la conversió entre objecte i taula i viceversa
+
 ## Instal·lació / Actualització SDK
 
 https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian?tabs=dotnet9#debian-12

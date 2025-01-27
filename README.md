@@ -1,5 +1,15 @@
 # .NET Core
 
+## Instal·lació / Actualització SDK
+
+https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian?tabs=dotnet9#debian-12
+
+Per a determinar la versió
+
+```bash
+dotnet --version
+``` 
+
 ## Arquitectura
 
 * CoreCLR (Common Language Runtime) -> Executció del codi
@@ -9,9 +19,6 @@
 
 https://dotnet.microsoft.com/download/dotnet/6.0
 
-# Windows Desktop Pack
-
-https://dotnet.microsoft.com/download/dotnet/6.0
 
 ## Compilació
 
@@ -21,14 +28,12 @@ CoreCLR carrega IL code (.dll o .exe) / JIT (just in Time) compiler - Conversió
 # EF
 
 Object Relational Mapping (ORM)
-* Programem amb Objectes
-* Guardem les dades amb taules i relacions entre les taules
-* Sistema per a facilitar la conversió entre objecte i taula i viceversa
-
-## Instal·lació / Actualització SDK
+* Programem amb Ob## Instal·lació / Actualització SDK
 
 https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian?tabs=dotnet9#debian-12
-
+jectes
+* Guardem les dades amb taules i relacions entre les taules
+* Sistema per a facilitar la conversió entre objecte i taula i viceversa
 
 ## Instal·lació / Actualització EF
 

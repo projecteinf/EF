@@ -8,6 +8,7 @@
 ## Compilació
 
 Source code -> Roslyn (C# Compiler) -> Intermediate Language (IL) -> .dll / .exe file -> Executat per la màquina virtual .Net Core (CoreCLR) 
+CoreCLR carrega IL code (.dll o .exe) / JIT (just in Time) compiler - Conversió a instruccions màquina (CPU)  
 
 # EF
 

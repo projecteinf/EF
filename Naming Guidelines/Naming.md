@@ -5,6 +5,16 @@ https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/
 
 # Convenció de noms
 
+## General
+
+✔️ Utilitzar noms que siguin significatius i descriptius
+✔️ Utilitzar noms fàcils de llegir/entendre encara que siguin més llargs: ( `GetCustomerName` vs `GetCustNm` )
+❌ No utilitzar caracters especials com ara $, @, %, etc.
+❌ No utilitzar noms de variables que siguin o referencïin noms de tipus
+❌ No utilitzar noms que es corresponguin amb paraules clau del llenguatge
+
+## Format noms
+
 * PascalCasing: mètodes i propietats públiques, tipus i noms d'espais de noms que consisteixen en múltiples paraules
 * camelCasing: noms de paràmetres
 

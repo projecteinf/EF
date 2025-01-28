@@ -12,7 +12,7 @@ Aquest document inclou les recomanacions relacionades amb la nomenclatura dels i
 
 ```csharp
 
-namespace API.V1
+namespace BoscComa.Api
 {
     public class UserController
     {
@@ -21,7 +21,7 @@ namespace API.V1
     }
 }
 
-namespace API.V2
+namespace BoscComa.Api
 {
     public class UserController
     {
@@ -44,7 +44,7 @@ List<User> GetUsersV2(bool includeInactive)
 
 ```csharp
 
-namespace API.V1
+namespace BoscComa.Api
 {
     public class UserController
     {
@@ -53,7 +53,7 @@ namespace API.V1
     }
 }
 
-namespace API.V2
+namespace BoscComa.Api
 {
     public class UserController
     {
@@ -78,7 +78,7 @@ List<User> GetUsers();
 
 ```csharp
 
-namespace API.V1
+namespace BoscComa.Api.Images
 {
     public class ImageLoader
     {
@@ -87,7 +87,7 @@ namespace API.V1
     
 }
 
-namespace API.V2
+namespace BoscComa.Api.Images
 {
     public class ImageLoader
     {

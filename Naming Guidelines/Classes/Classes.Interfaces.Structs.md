@@ -1,6 +1,6 @@
 # Nomenclatura de Clases, Interfaces y Structs
 
-✅ El nom de la classe i de l'estructura ha de descriure l'entitat o objecte que representa. Utilitzem substantius com a element principal i adjectius com a complement. 
+✅ El nom de la classe i de l'estructura ha de descriure l'entitat o objecte que representa. Utilitza substantius com a element principal i adjectius com a complement. 
 
 **Exemple:**
 ```csharp
@@ -43,7 +43,7 @@ public interface IPersistable { }
 public interface Component { } // Falta el prefix "I"
 ```
 
-✅ Quan defineixes una parella classe-interfície, assegura't que només es diferencien pel prefix "I".
+✅ Quan defineixis una parella classe-interfície, assegura't que només es diferencien pel prefix "I".
 
 **Exemple:**
 ```csharp
@@ -82,7 +82,7 @@ public class SerializableAttribute : Attribute { }
 public class OutOfRange : Exception { } // No acaba amb "Exception"
 ```
 
-❌ No prefixar noms de classes amb lletres com "C".
+❌ No prefixis noms de classes amb lletres com "C".
 
 **Exemple:**
 ```csharp

@@ -18,11 +18,11 @@ public class String {
 
 ```csharp
 // ✅ Correcte
-public class .... {
+public class Document {
     public string TextWriter { get {...} set {...} } 
 } 
 // ❌ Incorrecte (verbs no són adequats per a propietats)
-public class .... {
+public class Document {
     public string GetTextWriter(int value) { ... }
 }
 

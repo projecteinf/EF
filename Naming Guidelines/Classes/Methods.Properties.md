@@ -18,17 +18,13 @@ public class String {
 
 ```csharp
 // ✅ Correcte
-public class Person
-{
-    public string Name { get; set; }       // Substantiu
-    public string FullAddress { get; set; } // Frase substantiva
-    public bool Active { get; set; }       // Adjectiu
+public class .... {
+    public string TextWriter { get {...} set {...} } 
+} 
+// ❌ Incorrecte (verbs no són adequats per a propietats)
+public class .... {
+    public string GetTextWriter(int value) { ... }
 }
 
-// ❌ Incorrecte (verbs no són adequats per a propietats)
-public class Person
-{
-    public string GetName { get; set; }  // Sembla un mètode
-}
 ```
 

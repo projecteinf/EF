@@ -12,20 +12,22 @@ Console.WriteLine($"nullableValue:{nullableValue}");
 
 // Codi utilitzant "?" 
 // Retorna la suma d'una llista de números
-double SumNumbers(List<double[]> setsOfNumbers, int indexOfSetToSum)
+double SumNumbers(List<double[]> numbers, int indexOfSetToSum)
 {
-    return setsOfNumbers?[indexOfSetToSum]?.Sum() ?? double.NaN;
+    return indexOfSetToSum >= numbers?.Count ? double.NaN : numbers?[indexOfSetToSum]?.Sum() ?? double.NaN;
 }
 
-double SumNumbersClassic(List<double[]> setsOfNumbers, int indexOfSetToSum)
+
+// Codi clàssic amb control de nulls
+
+double SumNumbersClassic(List<double[]> numbers, int indexOfSetToSum)
 {
-    {
-    if (setsOfNumbers == null || indexOfSetToSum < 0 || indexOfSetToSum >= setsOfNumbers.Count)
+    if (numbers == null || indexOfSetToSum < 0 || indexOfSetToSum >= numbers.Count)
     {
         return double.NaN;
     }
 
-    double[] selectedSet = setsOfNumbers[indexOfSetToSum];
+    double[] selectedSet = numbers[indexOfSetToSum];
     if (selectedSet == null)
     {
         return double.NaN;
@@ -40,7 +42,8 @@ double SumNumbersClassic(List<double[]> setsOfNumbers, int indexOfSetToSum)
     return sum;
 }
 
-Console.WriteLine(SumNumbers(null, 0));  // output: NaN
+// output: NaN
+Console.WriteLine(SumNumbers(null, 0));  
 Console.WriteLine(SumNumbersClassic(null, 0));
   
 List<double[]?> numbers =
@@ -49,11 +52,14 @@ List<double[]?> numbers =
     null
 ];
 
-
-Console.WriteLine(SumNumbers(numbers, 0));  // output: 6
+// output: 6
+Console.WriteLine(SumNumbers(numbers, 0));  
 Console.WriteLine(SumNumbersClassic(numbers, 0));
- 
-Console.WriteLine(SumNumbers(numbers, 1)); // output: NaN
+
+// output: NaN 
+Console.WriteLine(SumNumbers(numbers, 1)); 
 Console.WriteLine(SumNumbersClassic(numbers, 1));
 
-  
+// OutOfRangeException  
+Console.WriteLine(SumNumbers(numbers, 2)); 
+Console.WriteLine(SumNumbersClassic(numbers, 2));

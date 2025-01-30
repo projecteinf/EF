@@ -1,8 +1,3 @@
-# Referència web
-
-https://learn.microsoft.com/en-us/dotnet/standard/design-guidelines/
-
-
 # Convenció de noms
 
 ## General

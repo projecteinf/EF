@@ -1,14 +1,17 @@
-﻿int notNullValue = 5;
+﻿using System;
+using static System.Console;
+
+int notNullValue = 5;
 int? nullableValue = null; // Utilize ? to make a value type nullable
 
 // notNullValue = null; // error CS0037: Cannot convert null to 'int' because it is a non-nullable value type
 
-Console.WriteLine($"notNullValue: {notNullValue}");
-Console.WriteLine($"nullableValue:{nullableValue}");
-Console.WriteLine($"nullableValue default value: {nullableValue.GetValueOrDefault()}");
+WriteLine($"notNullValue: {notNullValue}");
+WriteLine($"nullableValue:{nullableValue}");
+WriteLine($"nullableValue default value: {nullableValue.GetValueOrDefault()}");
 
 nullableValue = 10;
-Console.WriteLine($"nullableValue:{nullableValue}");
+WriteLine($"nullableValue:{nullableValue}");
 
 // Codi utilitzant "?" 
 // Retorna la suma d'una llista de números
@@ -45,8 +48,8 @@ double SumNumbersClassic(List<double[]> numbers, int indexOfSetToSum)
 }
 
 // output: NaN
-Console.WriteLine(SumNumbers(null, 0));  
-Console.WriteLine(SumNumbersClassic(null, 0));
+WriteLine(SumNumbers(null, 0));  
+WriteLine(SumNumbersClassic(null, 0));
   
 List<double[]?> numbers =
 [
@@ -55,13 +58,13 @@ List<double[]?> numbers =
 ];
 
 // output: 6
-Console.WriteLine(SumNumbers(numbers, 0));  
-Console.WriteLine(SumNumbersClassic(numbers, 0));
+WriteLine(SumNumbers(numbers, 0));  
+WriteLine(SumNumbersClassic(numbers, 0));
 
 // output: NaN 
-Console.WriteLine(SumNumbers(numbers, 1)); 
-Console.WriteLine(SumNumbersClassic(numbers, 1));
+WriteLine(SumNumbers(numbers, 1)); 
+WriteLine(SumNumbersClassic(numbers, 1));
 
 // OutOfRangeException  
-Console.WriteLine(SumNumbers(numbers, 2)); 
-Console.WriteLine(SumNumbersClassic(numbers, 2));
+WriteLine(SumNumbers(numbers, 2)); 
+WriteLine(SumNumbersClassic(numbers, 2));

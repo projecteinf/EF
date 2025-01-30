@@ -14,6 +14,8 @@ Console.WriteLine($"nullableValue:{nullableValue}");
 // Retorna la suma d'una llista de números
 double SumNumbers(List<double[]> numbers, int indexOfSetToSum)
 {
+
+    // left ?? right -> si left és null, retorna right sinó retorna left 
     return indexOfSetToSum >= numbers?.Count ? double.NaN : numbers?[indexOfSetToSum]?.Sum() ?? double.NaN;
 }
 

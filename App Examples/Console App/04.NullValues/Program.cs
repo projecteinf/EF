@@ -1,4 +1,5 @@
-﻿using System;
+﻿#pragma warning disable // Deshabilita tots els warnings - NO RECOMANAT
+using System;
 using static System.Console; // Good practice
 
 int notNullValue = 5;

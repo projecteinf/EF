@@ -5,14 +5,16 @@ using static System.Console;
 
 class Program
 {
-    static void Main(string[] args)
+    static int Main(string[] args)
     {
         if (args.Length != 2)
         {
-            Console.WriteLine("Usage: dotnet run <argument1> <argument2>");
-            return;
+            WriteLine("Usage: dotnet run <argument1> <argument2>");
+            // dotnet run 100 5,3
+            return 1;
         }
 
+        WriteLine($"Type of args[0]: {args[0].GetType()}\nType of args[1]: {args[0].GetType()}");
 
         int price;
         if (int.TryParse(args[0], out price))
@@ -32,6 +34,7 @@ class Program
         {
             WriteLine($"Conversion failed for: {args[1]}");
         }
+        return 0;
     }
 }
 

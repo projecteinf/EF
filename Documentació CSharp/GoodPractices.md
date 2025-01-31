@@ -64,3 +64,4 @@ Utilitzem /// per a tenir l'estructura bàsica que ens servirà per a documentar
 # Depurar el codi!
 
 Afegeix Logging a la teva aplicació per a poder determinar què ha passat en cas d'error: sobretot en les excepcions. No et limitis a utilitzar Console.WriteLine().
+

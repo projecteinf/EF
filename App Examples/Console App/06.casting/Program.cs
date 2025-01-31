@@ -23,8 +23,7 @@ namespace casting
             WriteLine($"Convert cast ToInt32().: double: {Convert.ToInt32(myDouble)}");
 
 
-            double[] numExamples = new[]
-            { 9.49, 9.50, 9.51, 10.49, 10.50, 10.51 };
+            double[] numExamples = new[] { 9.49, 9.50, 9.51, 10.49, 10.50, 10.51 };
             foreach (double numExample in numExamples)
             {
                 if (numExample == 9.5) {
@@ -36,6 +35,11 @@ namespace casting
                     }
                 }
                 WriteLine($"{numExample} ToInt32: {Convert.ToInt32(numExample)}");
+            }
+
+            foreach (double numExample in numExamples)
+            {
+                WriteLine($"{numExample} valor arrodonit: {Math.Round(numExample, MidpointRounding.AwayFromZero)}"); // Arrodonir el valor si la part decimal és 0.5
             }
         }
     }

@@ -29,3 +29,7 @@ if (condition)
 }
 
 ```
+
+# Arrodoniment de valors numèrics
+
+Verificar en qualsevol llenguatge que utilitzeu com funciona l'arrodoniment i conversió dels valors numèrics

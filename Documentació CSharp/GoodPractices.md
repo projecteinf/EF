@@ -55,4 +55,8 @@ WriteLine();
 
 string encoded = Convert.ToBase64String(binaryObject);
 WriteLine($"Binary Object as Base64\n {encoded}");
+
 ```
+# Documentació sobre funcions
+
+Utilitzem /// per a tenir l'estructura bàsica que ens servirà per a documentar les funcions. 

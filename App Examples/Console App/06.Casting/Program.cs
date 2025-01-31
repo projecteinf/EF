@@ -1,7 +1,7 @@
 ﻿using System;
 using static System.Console;
 
-namespace casting
+namespace BoscComa.Casting
 {
     class Program
     {

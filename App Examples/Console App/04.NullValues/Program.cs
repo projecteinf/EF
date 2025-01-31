@@ -1,5 +1,5 @@
 ﻿using System;
-using static System.Console;
+using static System.Console; // Good practice
 
 int notNullValue = 5;
 int? nullableValue = null; // Utilize ? to make a value type nullable

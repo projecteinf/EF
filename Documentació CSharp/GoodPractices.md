@@ -33,3 +33,26 @@ if (condition)
 # Arrodoniment de valors numèrics
 
 Verificar en qualsevol llenguatge que utilitzeu com funciona l'arrodoniment i conversió dels valors numèrics
+
+# Fitxers binaris
+
+Si has d'enviar per la xarxa o guardar en disc fitxers binaris, has de tenir en compte que el sistema de fitxers pot interpretar els caràcters de control com a caràcters especials. Per això, és recomanable codificar els fitxers binaris en base64.
+
+```csharp
+using System;
+using static System.Console;
+
+byte[] binaryObject = new byte[128];
+
+(new Random()).NextBytes(binaryObject); // Omplim l'array amb valors (bytes) aleatoris
+
+WriteLine("Binary Object as bytes\n");
+for(int index = 0; index < binaryObject.Length; index++)
+{
+    Write($"{binaryObject[index]:X} ");
+}
+WriteLine();
+
+string encoded = Convert.ToBase64String(binaryObject);
+WriteLine($"Binary Object as Base64\n {encoded}");
+```

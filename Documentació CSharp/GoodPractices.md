@@ -61,6 +61,9 @@ WriteLine($"Binary Object as Base64\n {encoded}");
 
 Utilitzem /// per a tenir l'estructura bàsica que ens servirà per a documentar les funcions.
 
-# Registre d'errors i alertes
+# Registre d'errors i traçabilitat
 
 Afegeix un sistema de registre (Logging) a la teva aplicació per a poder determinar què ha passat en cas d'error. Això et permetrà identificar i solucionar problemes més ràpidament.
+Utilitza traçabilitat en les operacions rellevants de la teva aplicació: emmagatzematge de dades a la base de dades, flux de treball, etc.
+
+

@@ -35,7 +35,7 @@ dotnet add package Microsoft.Extensions.Configuration.FileExtensions
 */
 
 
-namespace Instrumenting
+namespace BoscComa.Registre
 {
     class Program
     {

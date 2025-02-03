@@ -61,7 +61,6 @@ WriteLine($"Binary Object as Base64\n {encoded}");
 
 Utilitzem /// per a tenir l'estructura bàsica que ens servirà per a documentar les funcions.
 
-# Depurar el codi!
+# Registre d'errors i alertes
 
-Afegeix Logging a la teva aplicació per a poder determinar què ha passat en cas d'error: sobretot en les excepcions. No et limitis a utilitzar Console.WriteLine().
-
+Afegeix un sistema de registre (Logging) a la teva aplicació per a poder determinar què ha passat en cas d'error. Això et permetrà identificar i solucionar problemes més ràpidament.

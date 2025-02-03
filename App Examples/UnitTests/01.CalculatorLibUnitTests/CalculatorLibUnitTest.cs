@@ -17,13 +17,13 @@ public class UnitTestCalculadora
     [Fact]
     public void Sumar()
     {
-        decimal a = 2;
-        decimal b = 2;
+        decimal quantity1 = 2;
+        decimal quantity2 = 2;
         decimal expected = 4;
         var calc = new Calculadora();
 
         // act
-        decimal actual = calc.Sumar(a, b);
+        decimal actual = calc.Sumar(quantity1, quantity2);
         // assert
         Assert.Equal(expected, actual);
     }

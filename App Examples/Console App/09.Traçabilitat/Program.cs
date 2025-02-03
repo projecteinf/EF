@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 using System.IO;
 
 
@@ -16,12 +17,20 @@ Execució:
 
 TRACE SWITCH
 
-
 0    Off          This will output nothing
 1    Error        This will output only errors
 2    Warning      This will output errors and warnings
 3    Info         This will output errors, warnings, and information
 4    Verbose      This will output all levels
+
+CONFIGURACIÓ TRACE
+
+Instal·lació paquets:
+
+dotnet add package Microsoft.Extensions.Configuration
+dotnet add package Microsoft.Extensions.Configuration.Binder
+dotnet add package Microsoft.Extensions.Configuration.Json
+dotnet add package Microsoft.Extensions.Configuration.FileExtensions
 
 */
 
@@ -32,10 +41,42 @@ namespace Instrumenting
     {
         static void Main(string[] args)
         {
+            IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+            IConfigurationRoot configuration = builder.Build();
+
+            var ts = new TraceSwitch(
+                displayName: "PacktSwitch",
+                description: "This switch is set via a JSON config.");
+
+            configuration.GetSection("PacktSwitch").Bind(ts);
+
             Trace.Listeners.Add(new TextWriterTraceListener(File.CreateText("log.txt"))); // Emmagatzemart traces i depuracions en el fitxer log.txt    
             Trace.AutoFlush = true;
-            Debug.WriteLine("Debug says, I am watching!");
-            Trace.WriteLine("Trace says, I am watching!");
+            
+            Trace.WriteLineIf(ts.TraceError, "Trace error");
+            Trace.WriteLineIf(ts.TraceWarning, "Trace warning");
+            Trace.WriteLineIf(ts.TraceInfo, "Trace information");
+            Trace.WriteLineIf(ts.TraceVerbose, "Trace verbose");
+
+            // dotnet run --configuration Release
+
+            /*
+            Fitxer: appsettings.json 
+            {
+                "PacktSwitch": {
+                "Level": "Info"
+            }
+
+            Verbose és l'únic nivell d'informació que no s'emmagatzema en el fitxer.
+
+            Fitxer: appsettings.json 
+            {
+                "PacktSwitch": {
+                "Level": "Verbose"
+            }
+
+            S'emmagatzema tots els nivells d'informació en el fitxer.
+            */
         }
     }
 }

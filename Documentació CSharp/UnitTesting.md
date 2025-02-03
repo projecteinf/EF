@@ -11,7 +11,7 @@ dotnet new classlib
 mv Class1.cs Calculator.cs
 ```
 
-## Crear llibreria
+## Crear codi objecte llibreria
 
 ```bash
 dotnet build

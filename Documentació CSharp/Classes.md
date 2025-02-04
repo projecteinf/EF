@@ -18,6 +18,7 @@ Utilitzats per a emmagatzemar informació.
 
 - Constant
 - Read-only:  inicialització quan es crea l'objecte. No es pot canviar.
+- Read-Write: es pot llegir i escriure.
 - Event: es dispara quan passa alguna cosa: clicar un botó, entrar dins un camp del formulari...
 
 ## Methods
@@ -35,7 +36,7 @@ using System;
 namespace BoscComa.Shared {
     public class Person
     {
-        private string _name; // camp o field
+        private string _name; // camp o field de tipus Read-Write
         ...
         public string Name  // propietat o property
         {

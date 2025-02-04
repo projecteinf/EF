@@ -44,3 +44,16 @@ public class Person
     public int _Age;
 }
 
+✅ Els camps de tipus privat han de tenir noms que siguin substantius, frases substantives o adjectius. Utilitza el prefix _ per a diferenciar-los dels camps públics. La notació és camelCase.
+
+
+**Exemple:**
+```csharp
+// CORRECTE
+
+public class Configuration
+{
+    private string _filePath;  
+    private bool _active;        
+}
+```

@@ -27,3 +27,19 @@ S'utilitzen per a l'execució de sentències.
 - Property: s'executen quan es llegeixen o s'escriuen dades. Les dades s'emmagatzemen normalment en un camp (field). Tenen la funció d'encapsular els camps. 
 - Indexer: permeten accedir a un objecte com si fos un array.
 - Operator: permeten sobrecarregar operadors com +, -, *, /, etc.
+
+## Exemple
+
+```csharp
+using System;
+namespace BoscComa.Shared {
+    public class Person
+    {
+        private string _name;
+        public DateTime DateOfBirth;
+        public WondersOfTheAncientWorld FavoriteAncientWonder;
+        public WondersOfTheAncientWorld BucketList;
+        public Person Mother;
+        public Person Father;
+
+        public const string Species

@@ -44,6 +44,12 @@ App Examples/Console App/09.Traçabilitat/obj/Debug/
 App Examples/Console App/09.Traçabilitat/obj/Debug/net9.0/
 App Examples/Console App/09.Traçabilitat/log.txt
 
+App Examples/Console App/10.IncludeProject/bin
+App Examples/Console App/10.IncludeProject/obj/
+App Examples/Console App/10.IncludeProject/obj/Debug/
+App Examples/Console App/10.IncludeProject/obj/Debug/net9.0/
+
+
 App Examples/ClassLib/01.Calculator/bin
 App Examples/ClassLib/01.Calculator/obj/
 

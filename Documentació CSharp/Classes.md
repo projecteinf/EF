@@ -35,11 +35,20 @@ using System;
 namespace BoscComa.Shared {
     public class Person
     {
-        private string _name;
-        public DateTime DateOfBirth;
-        public WondersOfTheAncientWorld FavoriteAncientWonder;
-        public WondersOfTheAncientWorld BucketList;
-        public Person Mother;
-        public Person Father;
-
-        public const string Species
+        private string _name; // camp o field
+        ...
+        public string Name  // propietat o property
+        {
+            get { return _name; }
+            set { _name = value; }
+        }
+        ...
+    }
+}
+/*
+    Accedim a la propietat Name de la classe Person a través del nom de la propietat.
+        Person person = new Person();
+        person.Name = "Alice";
+        Console.WriteLine(person.Name);
+*/
+```

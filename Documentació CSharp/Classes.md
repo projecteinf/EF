@@ -1,4 +1,4 @@
-# Classes
+# Classes - Types en C#
 
 ```csharp
 using System;
@@ -49,7 +49,7 @@ namespace BoscComa.Shared {
 /*
     Accedim a la propietat Name de la classe Person a través del nom de la propietat.
         Person person = new Person();
-        person.Name = "Alice";
+        person.Name = "Maria";
         Console.WriteLine(person.Name);
 */
 ```

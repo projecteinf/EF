@@ -1,8 +1,10 @@
 # Classes - Types en C#
 
+En C# totes les classes hereden de la classe o tipus Object
+
 ```csharp
 using System;
-namespace Packt.Shared {
+namespace BoscComa.User {
     public class Person
     {
 

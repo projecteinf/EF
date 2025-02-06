@@ -36,27 +36,29 @@ Although it's sometimes necessary to develop general purpose classes that accept
 
 ### Exemple
 
+```CSharp
 using System;
 using System.Diagnostics;
+using static System.Console;
 
 public class PerformanceConsiderations
 {
     // General method that accepts an Object type (may involve boxing)
     public void Process(object value)
     {
-        Console.WriteLine("Processing object: " + value);
+        WriteLine("Processing object: " + value);
     }
 
     // Type-specific method overload for int (avoids boxing)
     public void Process(int value)
     {
-        Console.WriteLine("Processing int: " + value);
+        WriteLine("Processing int: " + value);
     }
 
     // Type-specific method overload for bool (avoids boxing)
     public void Process(bool value)
     {
-        Console.WriteLine("Processing bool: " + value);
+        WriteLine("Processing bool: " + value);
     }
 }
 
@@ -65,7 +67,7 @@ public class GenericPerformanceConsiderations<T>
     // Generic method (avoids boxing for value types)
     public void Process(T value)
     {
-        Console.WriteLine("Processing generic type: " + value);
+        WriteLine("Processing generic type: " + value);
     }
 }
 
@@ -86,7 +88,7 @@ class Program
             nonGeneric.Process("hello");  // Calls general method (boxing for value types)
         }
         sw.Stop();
-        Console.WriteLine("Non-generic time: " + sw.ElapsedMilliseconds + " ms");
+        WriteLine("Non-generic time: " + sw.ElapsedMilliseconds + " ms");
 
         // Measure performance for generic class
         sw.Restart();
@@ -96,9 +98,10 @@ class Program
             genericBool.Process(true);    // Calls generic method (no boxing)
         }
         sw.Stop();
-        Console.WriteLine("Generic time: " + sw.ElapsedMilliseconds + " ms");
+        WriteLine("Generic time: " + sw.ElapsedMilliseconds + " ms");
     }
 }
+```
 
 # Referències
 

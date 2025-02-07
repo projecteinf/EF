@@ -41,33 +41,32 @@ using System;
 using System.Diagnostics;
 using static System.Console;
 
-public class PerformanceConsiderations
-{
-    // General method that accepts an Object type (may involve boxing)
-    public void Process(object value)
-    {
-        WriteLine("Processing object: " + value);
-    }
-
-    // Type-specific method overload for int (avoids boxing)
-    public void Process(int value)
-    {
-        WriteLine("Processing int: " + value);
-    }
-
-    // Type-specific method overload for bool (avoids boxing)
-    public void Process(bool value)
-    {
-        WriteLine("Processing bool: " + value);
-    }
-}
+using System;
+using System.Diagnostics;
 
 public class GenericPerformanceConsiderations<T>
 {
-    // Generic method (avoids boxing for value types)
     public void Process(T value)
     {
-        WriteLine("Processing generic type: " + value);
+        string s = value.ToString(); // Correcció aquí
+    }
+}
+
+public class PerformanceConsiderations
+{
+    public void Process(object value)
+    {
+        string s = value.ToString();
+    }
+
+    public void Process(int value)
+    {
+        string s = value.ToString();
+    }
+
+    public void Process(bool value)
+    {
+        string s = value.ToString();
     }
 }
 
@@ -79,29 +78,82 @@ class Program
         var genericInt = new GenericPerformanceConsiderations<int>();
         var genericBool = new GenericPerformanceConsiderations<bool>();
 
-        // Measure performance for non-generic class
-        Stopwatch sw = Stopwatch.StartNew();
-        for (int i = 0; i < 1000000; i++)
-        {
-            nonGeneric.Process(42);       // Calls type-specific method (no boxing)
-            nonGeneric.Process(true);     // Calls type-specific method (no boxing)
-            nonGeneric.Process("hello");  // Calls general method (boxing for value types)
-        }
-        sw.Stop();
-        WriteLine("Non-generic time: " + sw.ElapsedMilliseconds + " ms");
+        Stopwatch sw = new Stopwatch();
+        long nonGenericTotal = 0;
+        long genericTotal = 0;
 
-        // Measure performance for generic class
-        sw.Restart();
-        for (int i = 0; i < 1000000; i++)
+        // Executa múltiples vegades per tenir un temps mitjà
+        for (int j = 0; j < 10; j++)
         {
-            genericInt.Process(42);       // Calls generic method (no boxing)
-            genericBool.Process(true);    // Calls generic method (no boxing)
+            // Mesura PerformanceConsiderations
+            sw.Restart();
+            for (int i = 0; i < 1000000; i++)
+            {
+                nonGeneric.Process(42);
+                nonGeneric.Process(true);
+            }
+            sw.Stop();
+            nonGenericTotal += sw.ElapsedTicks; // Millor precisió amb Ticks
+
+            // Mesura GenericPerformanceConsiderations
+            sw.Restart();
+            for (int i = 0; i < 1000000; i++)
+            {
+                genericInt.Process(42);
+                genericBool.Process(true);
+            }
+            sw.Stop();
+            genericTotal += sw.ElapsedTicks;
         }
-        sw.Stop();
-        WriteLine("Generic time: " + sw.ElapsedMilliseconds + " ms");
+
+        WriteLine("\nNon-generic time (avg): " + (nonGenericTotal / 10) + " ticks");
+        WriteLine("Generic time (avg): " + (genericTotal / 10) + " ticks");
     }
 }
+
 ```
+## Resultats
+    Non-generic time (avg): 12.462.058 ticks
+    Generic time (avg): 11.822.749 ticks
+
+Utilitzar sobreescritura pels tipus és més eficient que una classe de tipus genèrica.
+
+## Classe PerformanceConsiderations vs GenericPerformanceConsiderations<T>
+
+GenericPerformanceConsiderations<T> ticks d'execució: 12.462.058 ticks
+PerformanceConsiderations ticks d'execució: 11.822.749 ticks
+
+
+Encara que PerformanceConsiderations sigui més eficient per a tipus de valor (int, bool, etc.), 
+
+```bash 
+public void Process(object value)
+{
+    Console.WriteLine(value);
+}
+
+int number = 42;
+Process(number);  // 🔴 Aquí es fa boxing perquè int ha de convertir-se en object
+```
+
+els genèrics són útils en altres situacions, com ara:
+
+✔ Si has de treballar amb tipus de referència (string, List<T>, object) . No hi ha boxing, per naturalesa ja són objectes.
+
+```bash
+public void Process(object value)
+{
+    Console.WriteLine(value);
+}
+
+string text = "Hola";
+Process(text);  // ✅ NO hi ha boxing, perquè string ja és un objecte. La penalització és molt menor que en el cas anterior
+```
+
+
+✔ Si la classe ha de ser flexible i treballar amb molts tipus diferents: si necessites gestionar molts tipus de dades sense voler escriure milers de sobrecàrregues, els genèrics són una bona solució.
+
+✔ Si el rendiment no és una preocupació crítica: en aplicacions normals, la diferència pot no ser significativa i els genèrics poden facilitar la mantenibilitat. En aplicacions de joc, cal evitar l'utilització de tipus genèrics per a millorar al màxim el seu rendiment.
 
 # Referències
 

@@ -72,3 +72,11 @@ Convertim el número binari 0001110 (1110) a decimal 14 . És el valor que es gu
 **Resultat execució**
 Estudis Primària, Infantil, Secundària , Valor: 14
 
+# Good practice
+
+Utilitza valors enum per a emmagatzemar combinacions d'opcions discretes.
+- 8 opcions -> byte 
+- 16 opcions -> short 
+- 32 opcions -> int
+- 64 opcions -> long
+

@@ -3,7 +3,6 @@
 - Forma eficient d'emmagatzemar un o varis valors
 
 ```CSharp
-
 public enum EtapaEducativa
 {
     NoEstudis,
@@ -35,10 +34,9 @@ public class Person
     }
 
 }
-
 ```
 
-Emmagatzemar múltiples valors
+# Emmagatzematge de múltiples valors
 
 ```CSharp
 [System.Flags]
@@ -55,6 +53,22 @@ public enum EtapaEducativa : byte // Utilitzem un byte per a emmagatzemar els va
 }
 ```
 
+## Funcionament
 
-| 128 | 64 | 32 | 16 | 8 | 4 | 2 | 1 |
-|  0  |  1 |  1 | 0  | 1 | 1 | 1 | 0 | 
+La taula d'assignacions segons l'enum EtapaEducativa és:
+
+|Universitat|CicleFormatiuGrauSuperior|CicleFormatiuGrauMig|Secundària|Infantil|Primària|NoEstudis|
+|-----------|-----------|-----------|-----------|-----------|-----------|-----------|
+|128|64|32|16|8|4|2|1|
+|0|0|0|1|1|1|0|
+
+Convertim el número binari 0001110 (1110) a decimal 14 . És el valor que es guardarà a la variable de tipus Enum.
+
+```Csharp
+    EtapaEducativa etapaEducativa = EtapaEducativa.Primària | EtapaEducativa.Infantil | EtapaEducativa.Secundària;
+    WriteLine($"Estudis {etapaEducativa} , Valor: {(int) etapaEducativa}");
+```
+
+**Resultat execució**
+Estudis Primària, Infantil, Secundària , Valor: 14
+

@@ -66,4 +66,15 @@ Utilitzem /// per a tenir l'estructura bàsica que ens servirà per a documentar
 Afegeix un sistema de registre (Logging) a la teva aplicació per a poder determinar què ha passat en cas d'error. Això et permetrà identificar i solucionar problemes més ràpidament.
 Utilitza traçabilitat en les operacions rellevants de la teva aplicació: emmagatzematge de dades a la base de dades, flux de treball, etc.
 
+# Enumerables
 
+Utilitza valors enum per a emmagatzemar combinacions d'opcions discretes. El tipus del camp enum depèn del nombre de valors discrets o opcions que pot emmagatzemar la variable:
+
+- 8 opcions -> byte 
+- 16 opcions -> short 
+- 32 opcions -> int
+- 64 opcions -> long
+
+# Constants i read-only
+
+Cal prioritzar l'ús de variables o membres de tipus read-only sobre l'utilització de contants.

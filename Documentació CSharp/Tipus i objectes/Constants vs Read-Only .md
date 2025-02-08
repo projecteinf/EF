@@ -22,6 +22,6 @@ public static class Config
 ```CSharp
 public static class Config
 {
-    public static read-only string IPServerDB = "192.168.1.1";
+    public static readonly string IPServerDB = "192.168.1.1";
 }
 ```

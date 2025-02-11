@@ -31,3 +31,4 @@ namespace BoscComa.ERP
 }
 ```
 
+Si no es dóna alguna de les situacions anteriors, **no utilitzarem classes parcials** ja que requereixen d'una major gestió i introdueixen complexitat en el codi que només és acceptable si les avantatges la justifiquen.

@@ -64,6 +64,55 @@ class Program
 
 # Pas de paràmetres
 
-- Per valor - Entrada
-- "out" - Només de sortida
-- Per referència - Entrada i sortida
+- Per valor - Entrada. És el sistema utilitzat per defecte.
+- "out" - Només de sortida. Utilitzem el modificador **out** abans de declarar el tipus de paràmetre
+- Per referència - Entrada i sortida. Utilitzem el modificador **ref** abans de declarar el tipus de paràmetre
+
+```CSharp
+
+using System;
+using static System.Console;
+
+class Program {
+
+    public static void ExemplePasParametres(int x, ref int y, out int? z)
+    {
+        
+        // No podem referenciar a la z per què al no estar assignada 
+        // el compilador no deixa compilar el programa
+
+        WriteLine($"Dins el mètode: x = {x}, y = {y} z no es pot referenciar!!"); 
+        
+        z = 99; // Obligat inicialitzar el paràmetre out
+
+        x++;
+        y++;
+        z++;
+    }
+    static void Main() {
+
+        int a = 10;
+        int b = 20;
+        int? c = 30;
+
+        WriteLine($"Abans: a = {a}, b = {b}, c = {c}");
+        
+        ExemplePasParametres(a, ref b, out c);
+        
+        WriteLine($"Després: a = {a}, b = {b}, c = {c}");
+    }
+}
+
+/*** 
+
+RESULTAT
+
+Abans: a = 10, b = 20, c = 30
+Dins el mètode: x = 10, y = 20 z no es pot referenciar!!
+Després: a = 10, b = 21, c = 100
+
+***/
+```
+
+
+

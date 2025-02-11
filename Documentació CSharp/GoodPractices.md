@@ -57,7 +57,12 @@ string encoded = Convert.ToBase64String(binaryObject);
 WriteLine($"Binary Object as Base64\n {encoded}");
 
 ```
-# Documentació sobre funcions
+# Documentació sobre funcionGood Practice: Having both the static and instance methods to
+perform similar actions often makes sense. For example, string
+has both a Compare static method and a CompareTo instance
+method. This puts the choice of how to use the functionality in
+the hands of the programmers using your type, giving them more
+flexibility.s
 
 Utilitzem /// per a tenir l'estructura bàsica que ens servirà per a documentar les funcions.
 
@@ -86,3 +91,31 @@ Sempre que retornem una tupla, els seus camps seran nominals, significatius i se
 # Properties vs Fields
 
 Utilitza propietats enlloc de camps quan vols validar els valors que poden ser emmagatzemats.
+
+# Mètodes statics i d'instància
+
+Per a determinats mètodes, pot tenir sentit oferir la mateixa funcionalitat en un mètode static i un mètode d'instància. Per exemple, la classe string implementa dos mètodes per a comparar strings. CompareTo (mètode d'instància) i Compare (mètode estàtic). En classes pròpies, pot semblar que no té sentit, ja que, per exemple, si volem comparar dos objectes haurem de crear les instàncies dels objectes de totes formes. Podem pensar que no estalviem res. Però tenir un mètode estàtic per a comparar pot ser millorar la lectura del codi.
+
+```CSharp
+
+public static int Compare(Producte p1, Producte p2)
+{
+    return p1.Preu.CompareTo(p2.Preu);
+}
+
+Producte p1 = new Producte { Preu = 10 };
+Producte p2 = new Producte { Preu = 20 };
+
+int resultatEstatic = Producte.Compare(p1, p2); // Usant el mètode estàtic sense haver de crear una instància
+int resultatInstancia = p1.CompareTo(p2);
+```
+
+Si volem comparar el preu d'una llista de productes, el codi es llegeix millor!
+
+```CSharp
+
+List<Producte> productes = new List<Producte> { p1, p2, p3 };
+productes.Sort((x, y) => Producte.Compare(x, y)); // Usant el mètode estàtic per comparar
+productes.Sort((x, y) => x.CompareTo(y));
+
+```

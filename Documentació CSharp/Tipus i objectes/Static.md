@@ -1,5 +1,7 @@
 # Tipus i membres static
 
+Mètodes d'instància són accions que intervenen sobre l'objecte. Els mètodes estàtics són accions que intervenen sobre el tipus.
+
 Utilitzem tipus statics quan no és necessari crear objectes de la classe: tots els objectes comparteixen els mateixos valors pels camps i, per tant, no cal diferenciar-los entre ells.
 
 Tots els membres d'una classe estàtica també han de ser estàtics.

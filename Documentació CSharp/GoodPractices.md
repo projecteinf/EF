@@ -82,3 +82,7 @@ Cal prioritzar l'ús de variables o membres de tipus read-only sobre l'utilitzac
 # Tuples
 
 Sempre que retornem una tupla, els seus camps seran nominals, significatius i seguiran la nomenclatura definida pels camps associats a tipus.
+
+# Properties vs Fields
+
+Utilitza propietats enlloc de camps quan vols validar els valors que poden ser emmagatzemats.

@@ -78,3 +78,7 @@ Utilitza valors enum per a emmagatzemar combinacions d'opcions discretes. El tip
 # Constants i read-only
 
 Cal prioritzar l'ús de variables o membres de tipus read-only sobre l'utilització de contants.
+
+# Tuples
+
+Sempre que retornem una tupla, els seus camps seran nominals, significatius i seguiran la nomenclatura definida pels camps associats a tipus.

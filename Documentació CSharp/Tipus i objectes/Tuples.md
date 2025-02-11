@@ -47,3 +47,16 @@ class Program {
 }
 ```
 
+# Assignació de noms als camps de la tupla
+
+La nomenclatura que utilitzarem pels noms de la tupla serà la mateixa definida per als camps dels tipus.
+
+```CSharp
+    public static (string, int) GetTheDataWithTuple()
+    {
+        return (Text: "Número parell", Numero: 42);
+    }
+
+    (string,int) textAndNumberTuple = Processor.GetTheDataWithTuple();  
+    WriteLine($"{textAndNumberTuple.Text}, {textAndNumberTuple.Numero}");
+```

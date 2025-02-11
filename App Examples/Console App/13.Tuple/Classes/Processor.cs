@@ -13,4 +13,10 @@ public class Processor
     {
         return ("Número parell",  42);
     }
+
+    public static (string Text, int Numero) GetTheDataTupleWithNames()
+    {
+        return (Text: "Número parell", Numero: 42);
+    }
+
 }

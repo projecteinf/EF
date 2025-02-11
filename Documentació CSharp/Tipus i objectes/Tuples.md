@@ -52,11 +52,14 @@ class Program {
 La nomenclatura que utilitzarem pels noms de la tupla serà la mateixa definida per als camps dels tipus.
 
 ```CSharp
-    public static (string, int) GetTheDataWithTuple()
+    public static (string Text, int Numero) GetTheDataTupleWithNames()
     {
-        return (Text: "Número parell", Numero: 42);
+        return (Text: "Número parell", Numero: 42); // equival a return ("Número parell", 42); Els noms de la tupla es determinen a partir de la signatura del mètode
     }
 
-    (string,int) textAndNumberTuple = Processor.GetTheDataWithTuple();  
-    WriteLine($"{textAndNumberTuple.Text}, {textAndNumberTuple.Numero}");
+    var textAndNumberTupleWithNames = Processor.GetTheDataTupleWithNames();  // Retornem una tupla amb noms assignats
+    WriteLine($"{textAndNumberTupleWithNames.Text}, {textAndNumberTupleWithNames.Numero}");
+
+    (string Text, int Number) textAndNumberTupleWithoutNames = Processor.GetTheDataWithTuple();    // Retornem una tupla sense noms assignats i assignem noms quan rebem els valors
+    WriteLine($"{textAndNumberTupleWithoutNames.Text}, {textAndNumberTupleWithoutNames.Number}");
 ```

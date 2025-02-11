@@ -36,3 +36,28 @@ class Program
 ```
 
 1 mètode PrintMessage amb 3 variants!
+
+# Paràmetres per defecte
+
+```CSharp
+using System;
+using static System.Console;
+
+class Program
+{
+    static void Main()
+    {
+        PrintMessage();                      // Crida la versió sense paràmetres
+        PrintMessage("Hola, món!");          // Crida la versió amb un string
+        PrintMessage("Error", 3);            // Crida la versió amb un string i un int
+    }
+
+    static void PrintMessage(string message = "Missatge per defecte.", int times = 1)
+    {
+        for (int i = 0; i < times; i++)
+        {
+            WriteLine($"[{i+1}] {message}");
+        }
+    }
+}
+```

@@ -61,3 +61,9 @@ class Program
     }
 }
 ```
+
+# Pas de paràmetres
+
+- Per valor - Entrada
+- "out" - Només de sortida
+- Per referència - Entrada i sortida

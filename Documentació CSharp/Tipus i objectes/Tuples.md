@@ -36,11 +36,6 @@ Podem simplificar el codi de forma important utilitzant una Tupla
 using System;
 using static System.Console;
 
-public class Processor
-{
-    
-}
-
 class Program {
     static void Main() {
         TextAndNumber textAndNumber = Processor.GetTheData();

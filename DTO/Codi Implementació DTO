@@ -1,0 +1,111 @@
+Fitxer: DTO/UserDTO.cs
+```CSharp
+
+public record CreateUserDto(string Name, string Email)
+{
+    public User ToModel() => new User(Guid.NewGuid().ToString(), Name, Email);
+}
+
+```
+Fitxer: Model/User.cs
+```CSharpentenc que
+public class User
+{
+    public string Id { get; }
+    public string Name { get; }
+    public string Email { get; }
+
+    public User(string id, string name, string email)
+    {
+        Id = id;
+        Name = name;
+        Email = email;
+    }
+}
+```
+Fitxer: Services/UserService.cs
+```CSharp
+public class UserService {
+    private readonly IUserRepository _userRepository;
+
+    // Injecció de dependència per al repositori
+    public UserService(IUserRepository userRepository)
+    {
+        _userRepository = userRepository;
+    }
+
+    public async Task<User> CreateUserAsync(CreateUserDto dto)
+    {
+        
+        var newUser = dto.ToModel();
+        await _userRepository.SaveAsync(newUser);  // guardem a la base de dades 
+
+        return newUser;
+    }
+}
+```
+
+Fitxer: Interfaces/IUserRepository.cs
+```CSharp
+public interface IUserRepository
+{
+    Task SaveAsync(User user);
+    Task<User?> GetByIdAsync(string id);
+}
+
+```
+
+Fitxer: DB/InMemoryRepository.cs
+```CSharp
+public class InMemoryUserRepository : IUserRepository
+{
+    private readonly List<User> _users = new();
+
+    public async Task SaveAsync(User user)
+    {
+        _users.Add(user);
+        await Task.CompletedTask;
+    }
+
+    public async Task<User?> GetByIdAsync(string id)
+    {
+        return Task.FromResult(_users.FirstOrDefault(u => u.Id == id));
+    }
+}
+```
+
+Fitxer: Controllers/UserController.cs (API)
+```CSharp
+[ApiController]
+[Route("api/users")]
+public class UsersController : ControllerBase
+{
+    private readonly UserService _userService;
+
+    public UsersController(UserService userService)
+    {
+        _userService = userService;
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
+    {
+        
+        var newUser = await _userService.CreateUserAsync(dto);
+        return CreatedAtAction(nameof(GetUserById), new { id = newUser.Id }, newUser);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetUserById(string id)
+    {
+        // Simulem la recerca de l'usuari per ID
+        var user = await _userService.GetByIdAsync(id);
+
+        if (user == null)
+        {
+            return NotFound();
+        }
+        return Ok(user);
+    }
+}
+```

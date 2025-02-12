@@ -1,7 +1,7 @@
-Fitxer: DTO/UserDTO.cs
+Fitxer: DTO/CreateUserDTO.cs
 ```CSharp
 
-public record CreateUserDto(string Name, string Email)
+public record CreateUserDTO(string Name, string Email)
 {
     public User ToModel() => new User(Guid.NewGuid().ToString(), Name, Email);
 }
@@ -33,7 +33,7 @@ public class UserService {
         _userRepository = userRepository;
     }
 
-    public async Task<User> CreateUserAsync(CreateUserDto dto)
+    public async Task<User> CreateUserAsync(CreateUserDTO dto)
     {
         var newUser = dto.ToModel();
         await _userRepository.SaveAsync(newUser);
@@ -91,7 +91,7 @@ public class UsersController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto)
+    public async Task<IActionResult> CreateUser([FromBody] CreateUserDTO dto)
     {
         
         var newUser = await _userService.CreateUserAsync(dto);
@@ -111,4 +111,19 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 }
+```
+
+Probablement en un futur podríem tenir més classes de tipus record . Per exemple:
+
+Fitxer: DTO/UserDto.cs
+```CSharp
+
+public record CreateUserDTO(string Name, string Email)
+{
+    public User ToModel() => new User(Guid.NewGuid().ToString(), Name, Email);
+}
+
+public record UpdateUserDTO(string Id, string Name, string Email); // pot implementar mètode ToModel() o altres com CreateUserDTO
+public record UserResponseDTO(string Id, string Name, string Email);
+
 ```

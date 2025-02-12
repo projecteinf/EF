@@ -28,7 +28,6 @@ Fitxer: Services/UserService.cs
 public class UserService {
     private readonly IUserRepository _userRepository;
 
-    // Injecció de dependència per al repositori
     public UserService(IUserRepository userRepository)
     {
         _userRepository = userRepository;
@@ -36,13 +35,17 @@ public class UserService {
 
     public async Task<User> CreateUserAsync(CreateUserDto dto)
     {
-        
         var newUser = dto.ToModel();
-        await _userRepository.SaveAsync(newUser);  // guardem a la base de dades 
-
+        await _userRepository.SaveAsync(newUser);
         return newUser;
     }
+
+    public async Task<User?> GetUserByIdAsync(string id)
+    {
+        return await _userRepository.GetByIdAsync(id);
+    }
 }
+
 ```
 
 Fitxer: Interfaces/IUserRepository.cs
@@ -55,7 +58,7 @@ public interface IUserRepository
 
 ```
 
-Fitxer: DB/InMemoryRepository.cs
+Fitxer: DB/InMemoryUserRepository.cs
 ```CSharp
 public class InMemoryUserRepository : IUserRepository
 {
@@ -67,7 +70,7 @@ public class InMemoryUserRepository : IUserRepository
         await Task.CompletedTask;
     }
 
-    public async Task<User?> GetByIdAsync(string id)
+    public Task<User?> GetByIdAsync(string id)
     {
         return Task.FromResult(_users.FirstOrDefault(u => u.Id == id));
     }

@@ -75,6 +75,6 @@ public class CarBuilder
 
 2. Objectes que per naturalesa no poden canviar
 
-Alguns documents: contractes, factures,... són per naturalesa immutables. En el cas que es canvïin, cal tenir un històric de versions. Utilitzar objectes immutables ens facilita obtenir aquest històric.
+Alguns documents: contractes, factures,... són per naturalesa immutables. En el cas que es canvïin, cal tenir un històric de versions. Utilitzar objectes immutables ens facilita la gestió d'aquest històric.
 
 

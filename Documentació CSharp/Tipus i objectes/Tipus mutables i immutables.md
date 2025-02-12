@@ -77,4 +77,10 @@ public class CarBuilder
 
 Alguns documents: contractes, factures,... són per naturalesa immutables. En el cas que es canvïin, cal tenir un històric de versions. Utilitzar objectes immutables ens facilita la gestió d'aquest històric.
 
+3. Habilitar funcionalitat d'Undo / Redo
+
+4. Evitar modificacions accidentals per exemple quan s'utilitzen llibreries.
+
+5. Facilitar l'aplicació del paral·lelisme a l'aplicació
+
 

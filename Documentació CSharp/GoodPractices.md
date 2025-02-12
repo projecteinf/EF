@@ -117,3 +117,9 @@ productes.Sort((x, y) => Producte.Compare(x, y)); // Usant el mètode estàtic p
 productes.Sort((x, y) => x.CompareTo(y));
 ```
 És una bona pràctica, programar el mètode static i el d'instància amb l'objectiu de flexibilitar la reutilització del codi.
+
+# Estructura de les classes de l'aplicació 
+
+- Agruparem les classes en directoris que indicaran la funcionalitat de les mateixes: View, Controller, Model,...
+- El nom de la classe i del fitxer ha de ser el mateix, sense la extensió del fitxer.
+- Normalment tindrem un fitxer per a cada classe. Una excepció pot ser en els casos que s'utilitzin DTO.

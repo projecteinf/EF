@@ -1,10 +1,4 @@
-# 📌 Col·leccions i Classes de Paral·lelisme en C#
-
-C# ofereix diverses **estructures de dades i eines per a la concurrència i el paral·lelisme**. Aquí tens una **llista categoritzada** amb la seva funcionalitat.
-
----
-
-## **🔹  Sincronització de fils (`System.Threading`)**
+# **🔹  Sincronització de fils (`System.Threading`)**
 Classes per controlar l’accés als recursos compartits.
 
 | **Classe**                   | **Descripció** |

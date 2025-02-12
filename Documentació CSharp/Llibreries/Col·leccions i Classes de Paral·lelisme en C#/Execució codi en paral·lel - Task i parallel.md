@@ -1,9 +1,4 @@
-# 📌 Col·leccions i Classes de Paral·lelisme en C#
-
-C# ofereix diverses **estructures de dades i eines per a la concurrència i el paral·lelisme**. Aquí tens una **llista categoritzada** amb la seva funcionalitat.
-
-
-## **🔹  Tasques i paral·lelisme (`System.Threading.Tasks`)**
+# **🔹  Tasques i paral·lelisme (`System.Threading.Tasks`)**
 Classes per executar codi en paral·lel de manera eficient.
 
 | **Classe**                   | **Descripció** |

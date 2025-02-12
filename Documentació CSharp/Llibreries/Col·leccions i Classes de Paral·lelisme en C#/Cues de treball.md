@@ -1,11 +1,4 @@
-# 📌 Col·leccions i Classes de Paral·lelisme en C#
-
-C# ofereix diverses **estructures de dades i eines per a la concurrència i el paral·lelisme**. Aquí tens una **llista categoritzada** amb la seva funcionalitat.
-
----
-
-
-## **🔹  Cues de Treball (`System.Threading.Channels`)**
+# **🔹  Cues de Treball (`System.Threading.Channels`)**
 Més modernes i eficients que `BlockingCollection<T>`, ideals per a cues de treball.
 
 | **Classe**                   | **Descripció** |

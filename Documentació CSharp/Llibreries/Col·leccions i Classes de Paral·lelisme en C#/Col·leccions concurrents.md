@@ -1,10 +1,4 @@
-# 📌 Col·leccions i Classes de Paral·lelisme en C#
-
-C# ofereix diverses **estructures de dades i eines per a la concurrència i el paral·lelisme**. Aquí tens una **llista categoritzada** amb la seva funcionalitat.
-
----
-
-## **🔹  Col·leccions concurrents (`System.Collections.Concurrent`)**
+# **🔹  Col·leccions concurrents (`System.Collections.Concurrent`)**
 Col·leccions segures per a l’accés des de múltiples `threads` sense necessitat de bloquejos explícits (`lock`).
 
 | **Classe**                   | **Descripció** |

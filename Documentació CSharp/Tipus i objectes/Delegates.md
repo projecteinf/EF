@@ -80,3 +80,75 @@ class Program
 }
 
 ```
+
+## Versió amb classes i asíncron
+
+```CSharp
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+class TaskQueue
+{
+    // Definim el delegat per a tasques asíncrones
+    private delegate Task AsyncTaskDelegate();
+
+    // Cua de tasques
+    private Queue<AsyncTaskDelegate> taskQueue = new Queue<AsyncTaskDelegate>();
+
+    // Mètode per afegir una tasca a la cua
+    public void Enqueue(Func<Task> task)
+    {
+        taskQueue.Enqueue(() => task()); // Convertim Func<Task> a AsyncTaskDelegate
+    }
+
+    // Mètode per processar totes les tasques en ordre
+    public async Task ProcessQueueAsync()
+    {
+        while (taskQueue.Count > 0)
+        {
+            var task = taskQueue.Dequeue();
+            await task();
+        }
+    }
+}
+
+class Program
+{
+    static async Task Main()
+    {
+        // Creem una instància de la cua de tasques
+        TaskQueue queue = new TaskQueue();
+
+        // Afegim tasques a la cua
+        queue.Enqueue(ValidateDataAsync);
+        queue.Enqueue(ProcessTransactionAsync);
+        queue.Enqueue(SendNotificationAsync);
+
+        // Processem les tasques en ordre
+        await queue.ProcessQueueAsync();
+    }
+
+    static async Task ValidateDataAsync()
+    {
+        WriteLine("Validant les dades...");
+        await Task.Delay(1000);
+        WriteLine("Dades validades.");
+    }
+
+    static async Task ProcessTransactionAsync()
+    {
+        WriteLine("Processant la transacció...");
+        await Task.Delay(2000);
+        WriteLine("Transacció completada.");
+    }
+
+    static async Task SendNotificationAsync()
+    {
+        WriteLine("Enviant notificació...");
+        await Task.Delay(500);
+        WriteLine("Notificació enviada.");
+    }
+}
+
+```

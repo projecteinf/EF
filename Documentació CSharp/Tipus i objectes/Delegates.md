@@ -3,6 +3,34 @@
 Per a cridar un mètode podem utilitzar el "." . Per exemple: Console.WriteLine("...");
 Una altra forma de cridar a un mètode és mitjançant una delegació.
 
+# Hola món utilitzant delegació
+
+```CSharp
+using System;
+
+class Program
+{
+    // 1. Definim un delegate
+    delegate void MyDelegate(string message);
+
+    // 2. Creem un mètode compatible amb el delegate
+    static void PrintMessage(string message)
+    {
+        Console.WriteLine("Missatge: " + message);
+    }
+
+    static void Main()
+    {
+        // 3. Declarem una variable del tipus delegate i l'assignem a un mètode
+        MyDelegate del = PrintMessage;
+
+        // 4. Invoquem el delegate com si fos un mètode
+        del("Hola, món!");
+    }
+}
+
+```
+
 # Exemple: Cua de tasques amb delegates
 
 ## Versió simple síncrona i sense utilitzar classes

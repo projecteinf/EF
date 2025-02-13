@@ -35,3 +35,14 @@ public class Coordenada // Classe immutable!
 }
 ```
 que ens permet utilitzar qualsevol dels dos sistemes: operador + o mètode Add
+
+# Desavantatges
+
+Els operadors no apareixen en IntelliSense[¹].
+
+[¹]: Funcions principals:
+
+1. Autocompletat de noms de classes, mètodes i propietats.
+2. Llistat de mètodes disponibles en un objecte (obj. → mostra opcions).
+3. Documentació en línia de cada mètode o propietat.
+

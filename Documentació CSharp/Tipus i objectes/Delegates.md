@@ -7,6 +7,7 @@ Una altra forma de cridar a un mètode és mitjançant una delegació.
 
 ```CSharp
 using System;
+using static System.Console;
 
 class Program
 {
@@ -16,7 +17,7 @@ class Program
     // 2. Creem un mètode compatible amb el delegate
     static void PrintMessage(string message)
     {
-        Console.WriteLine("Missatge: " + message);
+        WriteLine("Missatge: " + message);
     }
 
     static void Main()

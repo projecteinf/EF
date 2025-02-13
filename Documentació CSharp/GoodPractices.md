@@ -123,3 +123,8 @@ productes.Sort((x, y) => x.CompareTo(y));
 - Agruparem les classes en directoris que indicaran la funcionalitat de les mateixes: Interfaces, View, Controller, Model,...
 - El nom de la classe i del fitxer ha de ser el mateix (sense la extensió del fitxer).
 - Normalment tindrem un fitxer per a cada classe. Una excepció pot ser en els casos que s'utilitzin DTO.
+
+# Operadors definits en tipus
+
+Sempre que definim un operador, definirem també un segon mètode que implementi l'operador. L'usuari podrà utilitzar qualsevol dels dos, però la definició d'un mètode permet que la funcionalitat estigui disponible a IntelliSense.
+

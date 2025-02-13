@@ -32,9 +32,17 @@ class Program
 
 ```
 
-# Exemple: Cua de tasques amb delegates
+# Motivació d'utilitzar delegates
 
-## Versió simple síncrona i sense utilitzar classes
+- Podem utilitzar delegates quan hem d'executar una sèrie de mètodes en ordre. Per exemple, tenim un procés de gestió de comandes. Per a cada comanda, hem d'executar les següents accions:
+
+    - Validar les dades
+    - Processar la transacció: per exemple, fer reserva d'estoc
+    - Enviar la notificació
+
+## Cua de tasques amb delegates
+
+### Versió simple síncrona i sense utilitzar classes
 
 ```CSharp
 using System;
@@ -82,7 +90,7 @@ class Program
 
 ```
 
-## Versió amb classes i asíncron
+### Versió amb classes i asíncron
 
 ```CSharp
 using System;

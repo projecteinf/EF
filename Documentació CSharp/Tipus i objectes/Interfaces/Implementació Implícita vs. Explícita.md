@@ -22,7 +22,7 @@ class Item : IEnemic, IObjecte
     // Implementació implícita (s'aplica a IEnemic, IObjecte)
     public void Moure()
     {
-        this.posicio += moviment;        
+        this.Posicio += Moviment;        
     }
 }
 
@@ -37,3 +37,46 @@ class Program
 
 ```
 
+## Exemple - Implementació Explícita
+
+```CSharp
+using System;
+
+interface IEnemic
+{
+    void Moure();
+}
+
+interface IObjecte
+{
+    void Moure();
+}
+
+class Item : IEnemic, IObjecte
+{
+    // Implementació implícita (s'aplica a IEnemic, IObjecte)
+    public void Moure()  // Implementació Implícita
+    {
+        this.Posicio += Moviment;        
+    }
+
+    public void IEnemic.Moure() // Implementació Explícita
+    {
+        this.Posicio += (Moviment * Velocitat);    
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Item itemObjecte = new Item();
+        itemObjecte.Moure(); // Moviment associat a IObject
+
+        Item itemEnemic = new Item();
+        ((IEnemic)itemEnemic).Moure(); // Moviment associat a IEnemic -> Incrementat amb la velocitat
+        
+    }
+}
+
+```

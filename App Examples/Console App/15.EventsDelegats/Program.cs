@@ -4,7 +4,7 @@ using static System.Console;
 class Program {
     static void Main() {
         Person person=new Person("Jordi",0);        
-        person.Shout = ShoutPerson; // Associem el delegat a la funció
+        person.Shout += ShoutPerson; // Associem el delegat a la funció
 
         WriteLine("Es pot tranquilitzar...");
         for(short i=0;i<5;i++) {
@@ -13,7 +13,7 @@ class Program {
         }
 
         person.NivellIra = 0;
-        person.Shout = ShoutPersonNoEsCalma; // Associem el delegat a la funció
+        person.Shout += ShoutPersonNoEsCalma; // S'executaran els dos mètodes: ShoutPerson i ShoutPersonNoEsCalma
         
         WriteLine("No es pot tranquilitzar...");
         for(short i=0;i<5;i++) {

@@ -71,7 +71,7 @@ class Program
     static void Main()
     {
         Item itemObjecte = new Item();
-        itemObjecte.Moure(); // Moviment associat a IObject
+        itemObjecte.Moure(); // Moviment associat a IObject i a totes les interfícies derivades de la classe que no tinguin una implementació explícita
 
         Item itemEnemic = new Item();
         ((IEnemic)itemEnemic).Moure(); // Moviment associat a IEnemic -> Incrementat amb la velocitat

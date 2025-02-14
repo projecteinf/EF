@@ -1,8 +1,8 @@
 class Person {
     public string Nom { get; set; }
     public short NivellIra { get; set; }
-    public EventHandler? Shout;  // EventHandler és un delegate => Shout és una propietat delegate
-
+    public event EventHandler? Shout;  // EventHandler és un delegate => Shout és una propietat delegate
+                                        // Utilitzem event perquè no es pugui assignar directament a Shout (+=, -=) Bona pràctica
     public Person(string nom, short nivellIra) 
     {
         this.Nom = nom;

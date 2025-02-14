@@ -96,9 +96,14 @@ productes.Sort((x, y) => x.CompareTo(y));
 # Operadors definits en tipus
 Sempre que definim un operador, definirem també un segon mètode que implementi l'operador. L'usuari podrà utilitzar qualsevol dels dos, però la definició d'un mètode permet que la funcionalitat estigui disponible a IntelliSense.
 # Gestió d'events amb delegats
-# Delegats predefinits
+## Delegats predefinits
 Sempre utilitzarem un d'aquests dos delegats en la gestió d'events.
 ```CSharp
 public delegate void EventHandler(object sender, EventArgs e);
 public delegate void EventHandler<TEventArgs>(object sender, TEventArgs e);
 ```
+Utilitzar la nomenclatura
+```CSharp
+public event EventHandler? NomPropietat;
+```
+per a declarar el delegat. Utilitzar el tipus event ja que d'aquesta forma no podem assignar (=) la funció directament a la propietat sinó que hem d'utilitzar += per afegir l'execució d'un event, o -= si el que volem fer és eliminar-la.

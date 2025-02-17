@@ -7,16 +7,29 @@ public class Program {
     public static void Main() {
         List<Persona> persones = GetPersones();
         persones.Sort();    
-        WriteLine("Llistat de persones ordenat per edat: de menor edat a major edat");
+        WriteLine("Ordenat per edat: de menor a major");
         Imprimir(persones);
         persones.Reverse();
-        WriteLine("Llistat de persones ordenat per edat: de major edat a menor edat");
+        WriteLine("Ordenat per edat: de major a menor");
         Imprimir(persones);
 
         persones = GetPersones();
         WriteLine("Persones desornades - Abans de començar ordenació per classe");
         persones.Sort(new PersonaComparador());
-        WriteLine("Llistat de persones ordenat per edat: de menor edat a major edat");
+        WriteLine("Ordenat per edat: de menor a major edat");
+        Imprimir(persones);
+
+        persones = GetPersones(); 
+        WriteLine("Ordenar per edat");
+        persones.Sort(new PersonaComparador<int>(p => p.Edat));
+        Imprimir(persones);
+
+        WriteLine("Ordenar alfabèticament per nom");
+        persones.Sort(new PersonaComparador<string>(p => p.Nom));
+        Imprimir(persones);
+
+        WriteLine("Ordenar per edat: de major a menor");
+        persones.Sort(new PersonaComparador<int>(p => p.Edat, ordreInvers: true));
         Imprimir(persones);
     }
     public static List<Persona> GetPersones() {

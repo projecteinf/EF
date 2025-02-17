@@ -31,4 +31,4 @@ class Persona : IComparable<Persona>
 
 ## Utilitzant una classe per a la comparació
 
-A vegades no tenim accés al codi font de la classe sobre la qual volem aplicar la comparació.
+A vegades no tenim accés al codi font de la classe sobre la qual volem aplicar la comparació. En aquests casos, no podem canviar la classe origen i implementar el mètode de comparació. L'opció que tenim és la de crear una classe específica per a implementar la comparació.

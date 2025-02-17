@@ -37,7 +37,7 @@ public class PersonaComparador : IComparer<Persona>
     }
 }
 ```
-Podem utilitzar una classe amb implementació de tipus <T>
+Podem utilitzar una classe de comparació amb tipus <T>
 
 ```CSharp
 public class PersonaComparador<T> : IComparer<Persona>
@@ -60,4 +60,10 @@ public class PersonaComparador<T> : IComparer<Persona>
 ```
 Ens permet ordenar per a qualsevol camp de la classe.
 ## Utilitzant LINQ
+```CSharp
+    List<Persona> personaCopia  = persones.OrderBy(p => p.Nom).ThenBy(p => p.Edat).ToList();
+```
 
+✔️ Senzill de llegir i no cal implementar codi addicional.
+✔️ Si es vol mantenir la llista inicial. 
+❌ Sempre crea una nova llista ordenada, fent que pugui ser més lent i consumir més memòria.

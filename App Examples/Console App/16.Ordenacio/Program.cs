@@ -31,6 +31,12 @@ public class Program {
         WriteLine("Ordenar per edat: de major a menor");
         persones.Sort(new PersonaComparador<int>(p => p.Edat, ordreInvers: true));
         Imprimir(persones);
+
+        persones = GetPersones();
+        persones.Sort();    
+        WriteLine("Ordenar alfabèticament per nom");
+        List<Persona> personesCopy = persones.OrderBy(p => p.Nom).ToList(); 
+        Imprimir(personesCopy);
     }
     public static List<Persona> GetPersones() {
         List<Persona> persones = new List<Persona>();

@@ -1,0 +1,2 @@
+# Struct
+Struct és un sistema més eficient de gestionar les classes per què es guarden en la memòria cau (L1 , L2) de la CPU. L'utilització de struct es recomana només quan la mida dels elements que es volen gestionar no és superior a 16 bytes. Aquesta 

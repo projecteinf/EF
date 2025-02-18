@@ -37,3 +37,17 @@ public class UserRepository : IRepository<User>
     public User GetById(int id) => _users.FirstOrDefault(u => u.Id == id);
 }
 ```
+## Mètode genèric
+En una classe, no genèrica, podem tenir un o varis mètodes que utilitzen genèrics com a paràmetre
+### Exemple mètode genèric
+```CSharp
+public static class SwapHelper
+{
+    public static void Intercanviar<T>(ref T a, ref T b)
+    {
+        T temp = a;
+        a = b;
+        b = temp;
+    }
+}
+```

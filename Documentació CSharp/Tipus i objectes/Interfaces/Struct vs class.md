@@ -69,3 +69,5 @@ static void Main()
     Console.WriteLine($"pos2: {pos2.X}, {pos2.Y}"); // ✅ Sortida: 15, 25 (nou valor)
 }
 ```
+# Conclusió
+Quan es compleixen els requisits de mínims, és difícil saber quina de les dues opcions (struct o class) escollir. Es pot utilitzar **BenchmarkDotNet** per a la realització de proves.

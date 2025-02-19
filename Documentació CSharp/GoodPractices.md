@@ -109,3 +109,5 @@ public event EventHandler? NomPropietat;
 per a declarar el delegat. Utilitzar el tipus event ja que d'aquesta forma no podem assignar (=) la funció directament a la propietat sinó que hem d'utilitzar += per afegir l'execució d'un event, o -= si el que volem fer és eliminar-la.
 # Comparació i ordenació
 En una llibreria on fem una classe per a diferents projectes, considerar sempre l'opció d'administrar el mètode de comparació!
+# Quan utilitzar structs
+Si el total de bytes utilitzats per tots els camps del teu tipus és de 16 bytes o menys, el teu tipus només utilitza struct per als seus camps i mai voldràs derivar del teu tipus, Microsoft recomana utilitzar struct. 

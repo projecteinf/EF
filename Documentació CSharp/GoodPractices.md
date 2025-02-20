@@ -115,3 +115,5 @@ Si el total de bytes utilitzats per tots els camps del teu tipus és de 16 bytes
 Excepte que hi hagi algun motiu de pes, marcar totes les propietats i mètodes de la classe com a virtuals. D'aquesta forma, es poden sobreescriure.  
 # Casting
 Utilitza les paraules claus "is" i "as" per evitar excepcions quan facis "casting" entre classes derivades.  
+# Excepcions
+Quan creis les teves pròpies classes per a la gestió d'errors inclou en la mateixa **TOTS** els constructors de la classe Exception.

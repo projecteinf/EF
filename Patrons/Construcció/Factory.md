@@ -14,7 +14,6 @@ public static class PersonaFactory  // Classe per fabricar objectes de tipus Per
 }
 ```
 Ara, des de qualsevol lloc, podem fer:  
-
 ```CSharp
     Persona p1 = PersonaFactory.CreaPersona("treballador", "Lucas", "12-3456789-10");
     Persona p2 = PersonaFactory.CreaPersona("jubilat", "Clara");

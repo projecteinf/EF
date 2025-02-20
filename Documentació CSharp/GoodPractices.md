@@ -112,4 +112,4 @@ En una llibreria on fem una classe per a diferents projectes, considerar sempre 
 # Quan utilitzar structs
 Si el total de bytes utilitzats per tots els camps del teu tipus és de 16 bytes o menys, el teu tipus només utilitza struct per als seus camps i mai voldràs derivar del teu tipus, Microsoft recomana utilitzar struct. 
 # Virtual
-Excepte que hi hagi algun motiu de pes, marcar totes les propietats i mètodes de la classe com a virtuals. D'aquesta forma, es poden sobreescriure.
+Excepte que hi hagi algun motiu de pes, marcar totes les propietats i mètodes de la classe com a virtuals. D'aquesta forma, es poden sobreescriure.  

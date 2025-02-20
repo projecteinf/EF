@@ -1,0 +1,2 @@
+# Mètodes d'extensió
+Utilitzem un mètode d'extensió quan volem afegir funcionalitat a una classe que no podem modificar (sealed) o no volem modificar. Per exemple, la classe "string" està optimitzada i sealed per evitar que ningú la pugui "destrossar"! . Per afegir funcionalitat a aquesta classe hem de crear mètodes d'extensió.

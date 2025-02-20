@@ -1,4 +1,4 @@
-# Introducció
+# Creació classe personalitzada - Gestió d'errors
 Per a personalitzar la gestió dels errors de les classes que dissenyem creem una nova classe que hereda de la classe .NET Exception.
 ```CSharp
 using System;

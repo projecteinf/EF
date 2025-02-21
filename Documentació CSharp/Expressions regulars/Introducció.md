@@ -7,7 +7,19 @@ if (Regex.IsMatch(data, patró)) {
     // Compleix
 } 
 ```
-
+# Símbols expressions regulars
+| **Símbol**      | **Significat**                     | **Símbol**      | **Significat**                      |
+|----------------|---------------------------------|----------------|----------------------------------|
+| `^`           | Inici de la cadena             | `$`           | Final de la cadena              |
+| `\d`          | Un sol dígit                   | `\D`          | Un sol caràcter NO numèric      |
+| `\w`          | Caràcter alfanumèric o `_`     | `\W`          | Qualsevol caràcter NO alfanumèric |
+| `[A-Za-z0-9]` | Rang(s) de caràcters           | `\^`          | El caràcter `^` literal        |
+| `[aeiou]`     | Conjunt de caràcters (vocals)  | `[^aeiou]`    | Qualsevol caràcter que NO sigui vocal |
+| `.`           | Qualsevol caràcter             | `\.`          | El caràcter `.` literal        |
+| `+`         | Un o més              | `?`         | Un o cap         |
+| `{N}`       | Exactament N       | `{N,M}`     | De N a M[¹] (ambdós inclosos)   |
+| `{N,}`      | Com a mínim N      | `{,N}`      | Fins a N      |
+[¹]: N i M són valors numèrics positius.
 
 # Codi Exemple
 ```CSharp
@@ -47,3 +59,4 @@ class Program
 * \s? → Pot haver-hi un espai opcional entre el prefix i el número.
 * \d{4,14} → El número de telèfon pot tenir entre 4 i 14 dígits (sense tenir en compte guions o espais).
 * $ → Final de la cadena.
+[+INFO sobre expressions regulars](https://www.regular-expressions.info)

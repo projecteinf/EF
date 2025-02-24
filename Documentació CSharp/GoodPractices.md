@@ -117,3 +117,5 @@ Excepte que hi hagi algun motiu de pes, marcar totes les propietats i mètodes d
 Utilitza les paraules claus "is" i "as" per evitar excepcions quan facis "casting" entre classes derivades.  
 # Excepcions
 Quan creis les teves pròpies classes per a la gestió d'errors inclou en la mateixa **TOTS** els constructors de la classe Exception.
+# Depuració de les dades
+Sempre que rebem informació externa, cal depurar bé les dades. Per exemple, utilitzar trim per eliminar espais no significatius.

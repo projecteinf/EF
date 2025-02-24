@@ -24,3 +24,75 @@ Span<MyStruct> span = new MyStruct[3]; // Funciona perfectament!
 | **Multi-threading** | Pot passar-se entre fils | `Span<T>` no es pot passar entre fils |
 | **Seguretat** | Pot provocar *segmentation faults* | Tipus-safe, sense *buffer overflows* |
 | **Conversió a objecte** | Pot convertir-se fàcilment (`void*`) | No es pot encapsular en `object` |
+# Quan utlitzar-lo
+Quan treballem amb struct "grans".  
+🔹 Els struct són per valor i, normalment, el seu pas és per valor. Per tant, es fa una còpia de la informació cada vegada que es passa per paràmetre o es modifica. La còpia té una penalització en el sistema.  
+```CSharp
+struct Punt
+{
+    public int X, Y;
+}
+
+class Program
+{
+    static void Modifica(Punt p)
+    {
+        p.X = 100; // ❌ Això modifica una còpia!
+    }
+
+    static void Main()
+    {
+        Punt p = new Punt { X = 1, Y = 2 };
+        Modifica(p);
+        Console.WriteLine(p.X); // 🔴 Mostra "1", perquè `struct` es passa per valor!
+    }
+}
+```
+🔹 Amb Span<T> podem evitar que es facin còpies de la informació quan aquesta s'envia com a paràmetre o es modifica. Es passa un punter de memòria associat a la informació original (no còpia).    
+```CSharp
+struct Punt
+{
+    public int X, Y;
+}
+
+class Program
+{
+    static void Modifica(Span<Punt> punts)
+    {
+        punts[0].X = 100; // ✅ Modifica l'original!
+    }
+
+    static void Main()
+    {
+        Punt[] array = { new Punt { X = 1, Y = 2 } };
+        Span<Punt> span = array; // ✅ No hi ha còpia
+        Modifica(span);
+
+        Console.WriteLine(array[0].X); // 🟢 Mostra "100"!
+    }
+}
+```
+🔹 Tot i que la recomanació sigui la de no superar els 16 bytes en estructures (struct) és una recomanació! Si ho fem cal tenir en compte fer-ne un ús eficient utilitzant Span i evitar d'aquesta forma la còpia de dades per a cada modificació (sobretot si se'n fan moltes).
+```CSharp
+struct GranStruct
+{
+    public double A, B, C, D; // 32 bytes
+}
+
+class Program
+{
+    static void Modifica(Span<GranStruct> structs)
+    {
+        structs[0].A = 99.9; // ✅ Modifica directament sense copiar
+    }
+
+    static void Main()
+    {
+        GranStruct[] array = new GranStruct[1000]; // 🟢 No hi ha heap allocation
+        Span<GranStruct> span = array; // ✅ Referència sense copiar
+        Modifica(span);
+
+        Console.WriteLine(array[0].A); // 🟢 Mostra "99.9"
+    }
+}
+```

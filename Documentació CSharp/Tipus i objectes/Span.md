@@ -15,3 +15,12 @@ Span<MyStruct> span = new MyStruct[3]; // Funciona perfectament!
 ```
 ❌ No es pot passar entre threads.  
 ❌ Té un límit de memòria a l'stack.  
+## Comparativa entre Span<T> i punters de llenguatge C
+| Característica          | Punter en C (`int*`) | `Span<T>` en C# |
+|------------------------|----------------------|-----------------|
+| **Tipus de memòria** | Pot apuntar a qualsevol lloc (stack, heap, global, unsafe) | Només a dades segures (stack, heap via `Memory<T>`) |
+| **Límit de seguretat** | No controla si surt dels límits | Té límits de seguretat interns |
+| **Accés a heap** | Pot apuntar a heap directament | Necessita `Memory<T>` per accedir a heap |
+| **Multi-threading** | Pot passar-se entre fils | `Span<T>` no es pot passar entre fils |
+| **Seguretat** | Pot provocar *segmentation faults* | Tipus-safe, sense *buffer overflows* |
+| **Conversió a objecte** | Pot convertir-se fàcilment (`void*`) | No es pot encapsular en `object` |

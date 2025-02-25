@@ -1,3 +1,9 @@
+**ATENCIÓ** 
+- **Cal treballar-ho molt més. No està clar.**  
+- **El contingut pot ser no correcte o esbiaixat.**  
+
+**[Video - The differences between classes and structs in C#](https://www.youtube.com/watch?v=uFHtFOmH2OI)**
+
 # Struct vs class
 La funcionalitat que ens aporten un struct i un class és la mateixa. Per tant, cal pendre una decisió de quina de les dues opcions escollir per a cada situació. 
 ## Característiques

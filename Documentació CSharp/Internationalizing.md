@@ -4,3 +4,11 @@ Al món els formats dels números, de les dates... són diferents entre diferent
 La internacionalització està formada per dues parts **
 La combinació del llenguatge i de les característiques regionals és el que anomenem **culture**.  
 [Codis de cultura suportats en C#](https://learn.microsoft.com/en-us/bingmaps/rest-services/common-parameters-and-types/supported-culture-codes)
+# Obtenir la cultura definida per l'usuari
+Disposem de la classe CultureInfo per a determinar la cultura de l'equip que està utilitzant l'usuari. Dins d'aquesta classe disposem de 2 mètodes: 
+- CurrentCulture 
+- CurrentUICulture 
+## CurrentCulture 
+Cultura per a format de dades  
+## CurrentUICulture 
+Cultura per a l'idioma de la UI  

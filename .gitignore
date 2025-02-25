@@ -84,8 +84,17 @@ App Examples/Console App/17.OverrideAndNew/obj
 App Examples/Console App/17.OverrideAndNew/obj/Debug/
 App Examples/Console App/17.OverrideAndNew/obj/Debug/net9.0/
 
+App Examples/Console App/18.Span-Benchmark/bin
+App Examples/Console App/18.Span-Benchmark/obj
+App Examples/Console App/18.Span-Benchmark/obj/Debug/
+App Examples/Console App/18.Span-Benchmark/obj/Debug/net9.0/
+App Examples/Console App/18.Span-Benchmark/BenchmarkDotNet.Artifacts/
+
+
+
 App Examples/ClassLib/01.Calculator/bin
 App Examples/ClassLib/01.Calculator/obj/
 
 App Examples/UnitTests/01.CalculatorLibUnitTests/bin
 App Examples/UnitTests/01.CalculatorLibUnitTests/obj/
+

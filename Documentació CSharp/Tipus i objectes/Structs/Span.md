@@ -3,6 +3,8 @@
 - **El contingut pot ser no correcte o esbiaixat.**  
 
 **[An Introduction to Writing High-Performance C# Using Span<T> Struct](https://nishanc.medium.com/an-introduction-to-writing-high-performance-c-using-span-t-struct-b859862a84e4)**
+**[C# - All About Span: Exploring a New .NET Mainstay](https://learn.microsoft.com/en-us/archive/msdn-magazine/2018/january/csharp-all-about-span-exploring-a-new-net-mainstay)**
+**[Optimize your C# code with SPAN](https://dev.to/iseesharp/span-keyword-in-c-n2k)**
 
 # Span
 Span és una estructura que fa ús de la memòria stack. Per tant, és un mètode eficient per a gestionar informació en memòria. Com que span utilitza la memòria stack, no podem utilitzar classes i estem limitats a 16 Bytes d'informació. Per tant, el seu ús és per a casos molt particulars.

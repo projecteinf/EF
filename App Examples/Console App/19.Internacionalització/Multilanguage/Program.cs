@@ -11,9 +11,7 @@ class Program
         string currentCultureName = CultureInfo.CurrentUICulture.Name;
         WriteLine("Cultura per defecte: {0}",currentCultureName);
 
-        string assemblyName = Assembly.GetExecutingAssembly().GetName().Name!;
-        string resourceName = $"{assemblyName}.Resources.Resources";
-        ResourceManager rm = new ResourceManager(resourceName, Assembly.GetExecutingAssembly());
+        ResourceManager rm = GetResourceManager();
 
         WriteLine(rm.GetString("HelloMessage", CultureInfo.CurrentUICulture));
         WriteLine(rm.GetString("GoodbyeMessage", CultureInfo.CurrentUICulture));
@@ -27,5 +25,12 @@ class Program
         
         WriteLine(rm.GetString("HelloMessage", culture));
         WriteLine(rm.GetString("GoodbyeMessage", culture));
+    }
+
+    public static ResourceManager GetResourceManager() 
+    {
+        string assemblyName = Assembly.GetExecutingAssembly().GetName().Name!;
+        string resourceName = $"{assemblyName}.Resources.Resources";
+        return new ResourceManager(resourceName, Assembly.GetExecutingAssembly());
     }
 }

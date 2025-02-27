@@ -19,5 +19,10 @@ namespace BoscComa.ADO
         {
             throw new Exception("Mètode no implementat");
         }
+
+        public override string ToString() 
+        {
+            return "Name: " + this.Name + "\nPassword Base64: " + Convert.ToBase64String(this._hashPassword); 
+        }
     }
 }

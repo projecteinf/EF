@@ -17,7 +17,9 @@ namespace BoscComa.ADO
         }
         public bool VerifyPassword(string password) 
         {
-            throw new Exception("Mètode no implementat");
+            string currentPassword = Convert.ToBase64String(this._hashPassword);
+            string checkPassword = Convert.ToBase64String(Password.GetHashPassword(password,this._salt));
+            return currentPassword.Equals(checkPassword);
         }
 
         public override string ToString() 

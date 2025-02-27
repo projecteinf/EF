@@ -8,7 +8,14 @@ namespace BoscComa.AppERP
     {
         public static void Main() 
         {
-            
+            List <User> users = new List<User>();
+            users.Add(createRandomUser())
         }
+
+        public static bool createRandomUser() {
+
+        }
+
+        
     }
 }

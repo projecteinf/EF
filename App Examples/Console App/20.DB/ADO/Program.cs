@@ -1,2 +1,16 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using System;
+using static System.Console;
+using BoscComa.ADO;
+
+namespace BoscComa.AppERP
+{
+    public class Program 
+    {
+        public static void Main() 
+        {
+            
+            string password = Convert.ToBase64String(User.GetHashPassword("Password"));
+            WriteLine($"{password}");
+        }
+    }
+}

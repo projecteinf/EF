@@ -4,7 +4,7 @@ namespace BoscComa.ADO
 {
     public class User
     {
-        private byte[]? _password;
+        private byte[]? _hashPassword;
         public string? Uuid { get; set; }
         public string? Name { get; set; }
         public string? Email { get; set; }   // Unic per a tots els usuaris

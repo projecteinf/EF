@@ -115,3 +115,7 @@ App Examples/UnitTests/01.CalculatorLibUnitTests/bin
 App Examples/UnitTests/01.CalculatorLibUnitTests/obj/
 
 
+App Examples/Console App/20.DB/ADO/obj/ADO.csproj.nuget.dgspec.json
+App Examples/Console App/20.DB/ADO/obj/ADO.csproj.nuget.g.props
+App Examples/Console App/20.DB/ADO/obj/project.assets.json
+App Examples/Console App/20.DB/ADO/obj/project.nuget.cache

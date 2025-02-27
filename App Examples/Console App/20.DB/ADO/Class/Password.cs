@@ -6,8 +6,14 @@ namespace BoscComa.ADO
     {
         private const int iterations = 100000;
         private const int saltSize = 16;
-        public static byte[] HashPassword(string password) {            
-            return HashPassword(password, Password.GenerateSalt(), Password.iterations);
+        
+        public static byte[] GetHashPassword(string password) {       
+            byte[] salt = Password.GenerateSalt();
+            
+            using (var pbkdf2 = new Rfc2898DeriveBytes(password, salt, Password.iterations, HashAlgorithmName.SHA256))
+            {
+                return pbkdf2.GetBytes(32); // 32 bytes
+            }  
         }        
         private static byte[] GenerateSalt() {
             byte[] salt = new byte[Password.saltSize];
@@ -17,5 +23,6 @@ namespace BoscComa.ADO
             }
             return salt;
         }
+
     }
 }

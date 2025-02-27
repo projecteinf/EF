@@ -14,7 +14,8 @@ namespace BoscComa.ADO
             this._salt = Password.GenerateSalt();
             this._hashPassword = Password.GetHashPassword(password,this._salt);
         }
-        public bool VerifyPassword(string password) {
+        public bool VerifyPassword(string password) 
+        {
             throw new Exception("Mètode no implementat");
         }
     }

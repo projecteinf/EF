@@ -1,0 +1,4 @@
+Trace error
+Trace warning
+Trace information
+Trace verbose

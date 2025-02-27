@@ -100,14 +100,6 @@ App Examples/Console App/19.Internacionalització/Multilanguage/obj
 App Examples/Console App/19.Internacionalització/Multilanguage/obj/Debug/
 App Examples/Console App/19.Internacionalització/Multilanguage/obj/Debug/net9.0/
 
-App Examples/Console App/20.DB/ADO/bin
-App Examples/Console App/20.DB/ADO/obj
-App Examples/Console App/20.DB/ADO/obj/Debug/
-App Examples/Console App/20.DB/ADO/obj/Debug/net9.0/
-
-
-
-
 App Examples/ClassLib/01.Calculator/bin
 App Examples/ClassLib/01.Calculator/obj/
 
@@ -116,6 +108,3 @@ App Examples/UnitTests/01.CalculatorLibUnitTests/obj/
 
 
 App Examples/Console App/20.DB/ADO/obj/ADO.csproj.nuget.dgspec.json
-App Examples/Console App/20.DB/ADO/obj/ADO.csproj.nuget.g.props
-App Examples/Console App/20.DB/ADO/obj/project.assets.json
-App Examples/Console App/20.DB/ADO/obj/project.nuget.cache

@@ -4,10 +4,12 @@ namespace BoscComa.ADO
 {
     static class Password
     {
-        private const int size = 100000;
-
+        private const int iterations = 100000;
+        public static byte[] HashPassword(string password) {            
+            return HashPassword(password, Password.GenerateSalt(16), Password.iterations);
+        }        
         private static byte[] GenerateSalt() {
-            byte[] salt = new byte[size];
+            byte[] salt = new byte[Password.iterations];
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(salt);

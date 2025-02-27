@@ -12,7 +12,7 @@ namespace BoscComa.ADO
         public void setPassword(string password) {
 
         }
-        public byte[] GetPassword(string password) 
+        public static byte[] GetHashPassword(string password) 
         {
             return Password.GetHashPassword(password);
         }

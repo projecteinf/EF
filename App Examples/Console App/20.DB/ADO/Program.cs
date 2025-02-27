@@ -9,8 +9,6 @@ namespace BoscComa.AppERP
         public static void Main() 
         {
             
-            string password = Convert.ToBase64String(User.GetHashPassword("Password"));
-            WriteLine($"{password}");
         }
     }
 }

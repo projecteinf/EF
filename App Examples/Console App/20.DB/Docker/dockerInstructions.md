@@ -21,5 +21,5 @@ sudo docker exec -it sqlserver  /bin/bash
 # Utilitzar fitxer sql per a executar comandes
 echo -e "use master\nGO\nCREATE DATABASE demodb\nGO\nSELECT name, database_id, create_date FROM sys.databases\nGO" > /tmp/createDatabase.sql
 /opt/mssql-tools/bin/sqlcmd -USA -PPatata1234 -C -i /tmp/createDatabase.sql
-
 ```
+![Instruccions creació base de dades a Microsoft SQL Server i docker](https://github.com/user-attachments/assets/27c87062-0e8d-4381-9a5a-7b7f0ac2850c)

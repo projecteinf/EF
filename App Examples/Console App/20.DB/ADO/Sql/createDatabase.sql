@@ -9,6 +9,8 @@ USE demodb;
 GO
 
 -- sys.tables conté les taules de la base de dades activa
+-- La mida de SaltPassword es correspon a la constant SALT_SIZE de la classe estàtica Password
+-- La mida de HashPassword es correspon a la constant PASSWORD_HASH_SIZE de la classe estàtica Password
 IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Users')
 BEGIN
     CREATE TABLE Users (
@@ -16,8 +18,8 @@ BEGIN
         Name VARCHAR(50) NOT NULL,
         EMail VARCHAR(255),
         DateOfBirth DATE,
-        saltPassword VARBINARY(16) NOT NULL,
-        hashPassword VARBINARY(32) NOT NULL
+        SaltPassword VARBINARY(16) NOT NULL,
+        HashPassword VARBINARY(32) NOT NULL
     );
 END
 GO

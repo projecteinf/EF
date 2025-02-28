@@ -28,7 +28,8 @@ namespace BoscComa.AppERP
             Program.VerificarPassword(users[0],passwordClear[1]);
         }
 
-        public static User CreateRandomUser(List<string> passwordClear) {
+        public static User CreateRandomUser(List<string> passwordClear) 
+        {
             User user = new User();
             user.Name = RandomGenerator.GenerateRandomString(6);
             string password = RandomGenerator.GenerateRandomString(8);

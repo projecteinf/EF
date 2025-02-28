@@ -12,3 +12,14 @@
 # Accés a base de dades
 - User: SA
 - Password: Patata1234
+# Crear base de dades
+```bash
+# Connectar amb el contenidor
+sudo docker exec -it sqlserver  /bin/bash
+# Connectar amb intèrpret de comandes de Microsoft SQL Server (Transact-SQL)
+/opt/mssql-tools/bin/sqlcmd -USA -PPatata1234 -C
+# Utilitzar fitxer sql per a executar comandes
+echo -e "use master\nGO\nCREATE DATABASE demodb\nGO\nSELECT name, database_id, create_date FROM sys.databases\nGO" > /tmp/createDatabase.sql
+/opt/mssql-tools/bin/sqlcmd -USA -PPatata1234 -C -i /tmp/createDatabase.sql
+
+```

@@ -6,7 +6,7 @@ namespace BoscComa.Connexio
     {
         static void Main()
         {
-            DadesXifratge dadesXifratge = new DadesXifratge();
+            DadesXifratgeAES dadesXifratge = new DadesXifratgeAES();
             WriteLine("Key: {0}",Convert.ToBase64String(dadesXifratge.Key));
             WriteLine("Vector inicialtizació: {0}",Convert.ToBase64String(dadesXifratge.VectorInicialitzacio));
         }

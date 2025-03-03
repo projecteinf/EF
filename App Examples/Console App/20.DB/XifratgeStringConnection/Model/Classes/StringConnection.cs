@@ -1,3 +1,5 @@
+using BoscComa.GestioErrors;
+
 namespace BoscComa.Connexio
 {
     public class StringConnection
@@ -24,6 +26,16 @@ namespace BoscComa.Connexio
         {   
             return this._password;
         }
-       
+        public void Store(string path,string fileName,bool overwrite = false) 
+        {
+            try 
+            {
+
+            } 
+            catch (FileException ex)
+            {
+                
+            }
+        }
     }
 }

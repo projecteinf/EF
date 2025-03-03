@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms</value>
+  </resheader>
+  
+  <!-- Claus i valors -->
+  <data name="InvalidPath">
+    <value>The specified path is not valid</value>
+  </data>
+  
+  <data name="FileExists">
+    <value>there's a file with the same name in the specified path. Please, select to overwrite the file.</value>
+  </data>
+
+</root>

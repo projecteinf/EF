@@ -1,4 +1,5 @@
-using System.IOException;
+using System.IO;
+
 namespace BoscComa.GestioErrors
 {
     public class FileException : IOException

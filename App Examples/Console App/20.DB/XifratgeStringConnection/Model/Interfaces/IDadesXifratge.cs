@@ -1,8 +1,8 @@
-namespace BoscComa.Connexio
+namespace BoscComa.Xifratge
 {
     public interface IDadesXifratge
     {
-        public byte[] Key { get; }
-        public byte[] VectorInicialitzacio { get; }
+        byte[] ObtenirClau();
+        byte[] ObtenirVectorInicialitzacio();
     }
 }

@@ -1,18 +1,28 @@
 using System.Security.Cryptography;
 
-namespace BoscComa.Connexio
+/***
+    APLICACIÓ PATRO SINGLETON PER TAL DE NOMÉS TENIR UNA INSTÀNCIA PER A XIFRATGE I DESXIFRATGE
+***/
+namespace BoscComa.Xifratge 
 {
-    public class DadesXifratgeAES: IDadesXifratge
+    public class DadesXifratgeAES : IDadesXifratge
     {
-        public byte[] Key { get; }
-        public byte[] VectorInicialitzacio { get; }
-        public DadesXifratgeAES() 
+        private static DadesXifratgeAES _xifratgeAES;
+        private static readonly object _bloqueig = new object();
+        public Aes Aes { get; private set; }
+
+        private DadesXifratgeAES()  // El fem privat per tal que les instàncies només es puguin crear dins de la classe.
         {
-            using (Aes aes = Aes.Create())
+            Aes = Aes.Create();
+        }
+        public static DadesXifratgeAES XifratgeAES
+        {
+            get
             {
-                this.Key = aes.Key;
-                this.VectorInicialitzacio = aes.IV;
+                return _xifratgeAES != null ? _xifratgeAES : (_xifratgeAES = new DadesXifratgeAES()); //  return _xifratgeAES ??= new DadesXifratgeAES();
             }
         }
+        public byte[] ObtenirClau() => Aes.Key;
+        public byte[] ObtenirVectorInicialitzacio() => Aes.IV;
     }
 }

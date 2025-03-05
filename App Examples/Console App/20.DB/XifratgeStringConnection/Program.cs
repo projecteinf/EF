@@ -20,7 +20,7 @@ namespace BoscComa.Connexio
             {
                 Console.WriteLine($"Error: {ex.TipusError} - {ex.Message}");
             }
-
+            WriteLine(stringConnection.Decrypt(@"/home/projecteinf/", "connexio.dat"));
         }
     }
 }

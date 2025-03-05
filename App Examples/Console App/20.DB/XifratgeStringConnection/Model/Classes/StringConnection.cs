@@ -58,14 +58,14 @@ namespace BoscComa.Connexio
                 throw new FileException("El fitxer ja existeix i no es pot sobreescriure.", TipusErrorFitxer.FitxerJaExisteix);
             }
 
-            var xifratge = DadesXifratgeAES.XifratgeAES;
+            DadesXifratgeAES xifratge = DadesXifratgeAES.XifratgeAES;
             byte[] encryptedData = XifrarCadena(cadena, xifratge.Aes);
 
             try
             {
                 File.WriteAllBytes(fullPath, encryptedData);
             }
-            catch (IOException ex)
+            catch (FileException ex)
             {
                 throw new FileException("Error d'I/O en escriure el fitxer.", TipusErrorFitxer.Altres, ex);
             }
@@ -77,12 +77,44 @@ namespace BoscComa.Connexio
             {
                 using (CryptoStream cs = new CryptoStream(ms, aes.CreateEncryptor(), CryptoStreamMode.Write))
                 {
-                    using (StreamWriter sw = new StreamWriter(cs, Encoding.UTF8))
+                    using (StreamWriter streamWriter = new StreamWriter(cs, Encoding.UTF8))
                     {
-                        sw.Write(text);
+                        streamWriter.Write(text);
                     }
                 }
                 return ms.ToArray();
+            }
+        }
+        public string Decrypt(string path, string fileName) 
+        {
+            byte[] encryptedText = this.LoadEncryptedText(path,fileName);
+            DadesXifratgeAES xifratge = DadesXifratgeAES.XifratgeAES;
+
+            using (ICryptoTransform decryptor = xifratge.Aes.
+            CreateDecryptor(xifratge.GetKey(), xifratge.GetInitializationVector()))
+            {
+                using (MemoryStream ms = new MemoryStream(encryptedText))
+                    using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))
+                        using (StreamReader sr = new StreamReader(cs))
+                        {
+                            return sr.ReadToEnd();
+                        }
+            }
+        }
+        private byte[] LoadEncryptedText(string path, string fileName) {
+            string fullPath = Path.Combine(path, fileName);
+
+            if (!File.Exists(fullPath))
+            {
+                throw new FileException($"No s'ha pogut localitzar el fitxer {fullPath}.", TipusErrorFitxer.FitxerNoExisteix);
+            }
+            try
+            {
+                return File.ReadAllBytes(fullPath);
+            }
+            catch (FileException ex)
+            {
+                throw new FileException("Error d'I/O en escriure el fitxer.", TipusErrorFitxer.FitxerNoExisteix, ex);
             }
         }
 

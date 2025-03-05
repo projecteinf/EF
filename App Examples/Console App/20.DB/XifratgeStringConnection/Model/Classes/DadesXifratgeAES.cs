@@ -22,7 +22,7 @@ namespace BoscComa.Xifratge
                 return _xifratgeAES != null ? _xifratgeAES : (_xifratgeAES = new DadesXifratgeAES()); //  return _xifratgeAES ??= new DadesXifratgeAES();
             }
         }
-        public byte[] ObtenirClau() => Aes.Key;
-        public byte[] ObtenirVectorInicialitzacio() => Aes.IV;
+        public byte[] GetKey() => Aes.Key;
+        public byte[] GetInitializationVector() => Aes.IV;
     }
 }

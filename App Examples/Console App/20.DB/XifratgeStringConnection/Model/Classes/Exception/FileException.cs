@@ -6,7 +6,8 @@ namespace BoscComa.GestioErrors
     {
         PathInvalid,      
         FitxerInvalid,    
-        FitxerJaExisteix, 
+        FitxerJaExisteix,
+        FitxerNoExisteix, 
         Altres            
     }
     public class FileException : IOException

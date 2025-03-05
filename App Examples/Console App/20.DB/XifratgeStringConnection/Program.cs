@@ -7,7 +7,6 @@ namespace BoscComa.Connexio
     {
         static void Main()
         {
-            
             string path=@"/home/projecteinf/Projectes/2025/EF/App Examples/Console App/20.DB/ADO/Config";
             string filename=@"connction.enc";
 

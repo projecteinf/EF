@@ -43,42 +43,33 @@ namespace BoscComa.Connexio
             string cadena = this.GetStringConnection();
             string fullPath = Path.Combine(path, fileName);
 
+            if (!Directory.Exists(path))
+            {
+                throw new FileException("El directori especificat no existeix.", TipusErrorFitxer.PathInvalid);
+            }
+
+            if (string.IsNullOrWhiteSpace(fileName) || fileName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
+            {
+                throw new FileException("El nom del fitxer no és vàlid.", TipusErrorFitxer.FitxerInvalid);
+            }
+
+            if (File.Exists(fullPath) && !overwrite)
+            {
+                throw new FileException("El fitxer ja existeix i no es pot sobreescriure.", TipusErrorFitxer.FitxerJaExisteix);
+            }
+
+            var xifratge = DadesXifratgeAES.XifratgeAES;
+            byte[] encryptedData = XifrarCadena(cadena, xifratge.Aes);
+
             try
             {
-                if (!Directory.Exists(path))
-                {
-                    throw new FileException("El directori especificat no existeix.", TipusErrorFitxer.PathInvalid);
-                }
-                if (string.IsNullOrWhiteSpace(fileName) || fileName.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0)
-                {
-                    throw new FileException("El nom del fitxer no és vàlid.", TipusErrorFitxer.FitxerInvalid);
-                }
-                if (File.Exists(fullPath) && !overwrite)
-                {
-                    throw new FileException("El fitxer ja existeix i no es pot sobreescriure.", TipusErrorFitxer.FitxerJaExisteix);
-                }
-
-                // 🔐 Xifrar la cadena de connexió
-                var xifratge = DadesXifratgeAES.XifratgeAES;
-                byte[] encryptedData = XifrarCadena(cadena, xifratge.Aes);
-
-                // 📝 Escriure el fitxer
                 File.WriteAllBytes(fullPath, encryptedData);
             }
-            catch (FileException ex)
+            catch (IOException ex)
             {
-                Console.WriteLine($"Error de fitxer ({ex.TipusError}): {ex.Message}");
-            }
-            catch (CryptographicException ex)
-            {
-                Console.WriteLine($"Error de xifratge: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error desconegut: {ex.Message}");
+                throw new FileException("Error d'I/O en escriure el fitxer.", TipusErrorFitxer.Altres, ex);
             }
         }
-
 
         private byte[] XifrarCadena(string text, Aes aes)
         {

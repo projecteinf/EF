@@ -12,7 +12,6 @@ namespace BoscComa.Connexio
         private readonly string _user;
         private readonly string _password;
         private readonly string _database;
-
         public StringConnection(string host, string database, string user, string password ) 
         {
             this._host = host;
@@ -36,7 +35,6 @@ namespace BoscComa.Connexio
         {
             return this._database;
         }
-
 
         public void Store(string path, string fileName, bool overwrite = false)
         {
@@ -124,7 +122,3 @@ namespace BoscComa.Connexio
         }
     }
 }
-
-
-
-

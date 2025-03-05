@@ -62,6 +62,9 @@ namespace BoscComa.Connexio
             try
             {
                 File.WriteAllBytes(fullPath, encryptedData);
+                // Hem de guardar les claus per a poder desencriptar la cadena de connexió
+                File.WriteAllBytes(Path.Combine(path, "Key.aes"),xifratge.GetKey());
+                File.WriteAllBytes(Path.Combine(path, "IV.aes"),xifratge.GetInitializationVector());
             }
             catch (FileException ex)
             {
@@ -88,8 +91,10 @@ namespace BoscComa.Connexio
             byte[] encryptedText = this.LoadEncryptedText(path,fileName);
             DadesXifratgeAES xifratge = DadesXifratgeAES.XifratgeAES;
 
-            using (ICryptoTransform decryptor = xifratge.Aes.
-            CreateDecryptor(xifratge.GetKey(), xifratge.GetInitializationVector()))
+            xifratge.Aes.Key=File.ReadAllBytes(Path.Combine(path, "Key.aes"));
+            xifratge.Aes.IV=File.ReadAllBytes(Path.Combine(path, "IV.aes"));
+
+            using (ICryptoTransform decryptor = xifratge.Aes.CreateDecryptor(xifratge.GetKey(), xifratge.GetInitializationVector()))
             {
                 using (MemoryStream ms = new MemoryStream(encryptedText))
                     using (CryptoStream cs = new CryptoStream(ms, decryptor, CryptoStreamMode.Read))

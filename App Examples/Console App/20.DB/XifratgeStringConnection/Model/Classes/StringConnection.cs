@@ -86,9 +86,9 @@ namespace BoscComa.Connexio
                 return ms.ToArray();
             }
         }
-        public string Decrypt(string path, string fileName) 
+        public static string GetDecrypt(string path, string fileName) 
         {
-            byte[] encryptedText = this.LoadEncryptedText(path,fileName);
+            byte[] encryptedText = LoadEncryptedText(path,fileName);
             DadesXifratgeAES xifratge = DadesXifratgeAES.XifratgeAES;
 
             xifratge.Aes.Key=File.ReadAllBytes(Path.Combine(path, "Key.aes"));
@@ -104,7 +104,7 @@ namespace BoscComa.Connexio
                         }
             }
         }
-        private byte[] LoadEncryptedText(string path, string fileName) {
+        private static byte[] LoadEncryptedText(string path, string fileName) {
             string fullPath = Path.Combine(path, fileName);
 
             if (!File.Exists(fullPath))

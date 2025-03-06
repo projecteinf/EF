@@ -19,7 +19,7 @@ namespace BoscComa.Connexio
             {
                 Console.WriteLine($"Error: {ex.TipusError} - {ex.Message}");
             }
-            WriteLine(stringConnection.Decrypt(path,filename));
+            WriteLine(StringConnection.GetDecrypt(path,filename));
         }
     }
 }

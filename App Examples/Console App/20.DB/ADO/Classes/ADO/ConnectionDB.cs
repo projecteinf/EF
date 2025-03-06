@@ -1,9 +1,9 @@
 /***
     Afegir paquet SqlClient
-        dotnet add package System.Data.SqlClient
+        dotnet add package Microsoft.Data.SqlClient
 ***/
 
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 using BoscComa.Connexio;
 
 namespace BoscComa.ADO

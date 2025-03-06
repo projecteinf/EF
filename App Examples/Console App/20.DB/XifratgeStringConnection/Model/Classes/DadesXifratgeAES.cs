@@ -8,7 +8,6 @@ namespace BoscComa.Xifratge
     public class DadesXifratgeAES : IDadesXifratge
     {
         private static DadesXifratgeAES _xifratgeAES;
-        private static readonly object _bloqueig = new object();
         public Aes Aes { get; private set; }
 
         private DadesXifratgeAES()  // El fem privat per tal que les instàncies només es puguin crear dins de la classe.

@@ -24,6 +24,10 @@ namespace BoscComa.ADO
             {
                 throw new Exception("Error en la connexió.", sqlEx);
             }
+            catch (Exception ex)
+            {
+                throw new Exception("Error en la connexió.", ex);
+            }
         }
         public static void Inicialitzar(string path,string fileName) 
         {

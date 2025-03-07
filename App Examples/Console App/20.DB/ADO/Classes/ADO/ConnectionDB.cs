@@ -11,8 +11,7 @@ namespace BoscComa.ADO
     public class Connection
     {
         public static Connection _connectionDB;
-        public SqlConnection ConnectionMSSQL;
-        
+        public SqlConnection ConnectionMSSQL;        
         private Connection(string path,string fileName) 
         {
             string connectionString = StringConnection.GetDecrypt(path,fileName);
@@ -54,7 +53,6 @@ namespace BoscComa.ADO
                 this.ConnectionMSSQL.Open();
             }
         }
-
         public void Tancar()
         {
             if (this.ConnectionMSSQL.State == System.Data.ConnectionState.Open)

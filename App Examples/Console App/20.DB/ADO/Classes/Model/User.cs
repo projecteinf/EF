@@ -10,6 +10,22 @@ namespace BoscComa.ADO
         public string? Name { get; set; }
         public string? Email { get; set; }   // Unic per a tots els usuaris
         public DateTime? DateOfBirth { get; set; }   // Guardem només la data. Visualització amb la cultura de l'usuari
+        public byte[] GetHashPassword()
+        {
+            return _hashPassword;
+        }
+        public byte[] GetSalt()
+        {
+            return _salt;
+        }
+        public void SetHashPassword(byte[] hash)
+        {
+            _hashPassword = hash;
+        }
+        public void SetSalt(byte[] salt)
+        {
+            _salt = salt;
+        }
         public void SetPassword(string password) 
         {
             this._salt = Password.GenerateSalt();

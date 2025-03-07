@@ -21,7 +21,6 @@ namespace BoscComa.ADO
             string checkPassword = Convert.ToBase64String(Password.GetHashPassword(password,this._salt));
             return currentPassword.Equals(checkPassword);
         }
-
         public override string ToString() 
         {
             return "Name: " + this.Name + "\nPassword Base64: " + Convert.ToBase64String(this._hashPassword); 

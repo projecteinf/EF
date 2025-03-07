@@ -20,9 +20,9 @@ namespace BoscComa.ADO
             {
                 this.ConnectionMSSQL = new SqlConnection(connectionString);
             }
-            catch (Exception ex)
+            catch (SqlException sqlEx)
             {
-                throw new Exception("Error en la connexió.", ex);
+                throw new Exception("Error en la connexió.", sqlEx);
             }
         }
         public static void Inicialitzar(string path,string fileName) 

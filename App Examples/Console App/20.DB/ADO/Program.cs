@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Globalization;
 using static System.Console;
 using BoscComa.ADO;
 
@@ -13,24 +14,31 @@ namespace BoscComa.AppERP
             string fileName=@"connction.enc";
             Connection.Inicialitzar(path, fileName);
             Connection connection = Connection.ConnectionDB;
-            connection.Obrir(); // Bona pràctica tenir oberta la connexió quan és necessari!!
-            VeurePropietats(connection);
-            connection.Tancar();
-            VeurePropietats(connection);
-        }
-        public static void VeurePropietats(Connection con)
-        {
-            WriteLine("Estat de la connexió: " + con.ConnectionMSSQL.State);
-            if (con.ConnectionMSSQL.State  == System.Data.ConnectionState.Open)
-            {
-                WriteLine("Base de dades: " + con.ConnectionMSSQL.Database);
-                WriteLine("Versió del servidor: " + con.ConnectionMSSQL.ServerVersion);
-            }
-            WriteLine("Cadena de connexió: " + con.ConnectionMSSQL.ConnectionString);
             
-            WriteLine("Nom del servidor: " + con.ConnectionMSSQL.DataSource);
-            WriteLine("Timeout de connexió: " + con.ConnectionMSSQL.ConnectionTimeout);
+            User user = new User
+            {
+                Uuid = CreateUUID(),
+                Name = "Joan", 
+                Email = "joan@gmail.com", 
+                DateOfBirth = ConvertToDate("18/12/2000","ca-ES")
+            };
 
+            user.SetPassword("Patata1234");
+            UserADO userADO = new UserADO(connection);
+            userADO.Create(user);
+        }
+
+        public static DateTime ConvertToDate(string date,string culture)
+        {
+            CultureInfo cultureInfo = new CultureInfo(culture);
+            return DateTime.Parse(date, cultureInfo);
+
+        }
+
+        public static string CreateUUID() 
+        {
+            Guid myuuid = Guid.NewGuid();
+            return myuuid.ToString();
         }
     }
 }

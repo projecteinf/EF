@@ -62,6 +62,37 @@ namespace BoscComa.ADO
             return null;
         }
 
+        public List<User> GetAllUsers()
+        {
+            List<User> users = new List<User>();
+            string query = "SELECT * FROM Users";
+        
+            using (SqlCommand cmd = new SqlCommand(query, _connection.GetConnection()))
+            {
+                _connection.GetConnection().Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        User user = new User
+                        {
+                            Uuid = reader["Uuid"].ToString(),
+                            Name = reader["Name"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            DateOfBirth = reader["DateOfBirth"] as DateTime?
+                        };
+                        user.SetHashPassword((byte[])reader["HashPassword"]);
+                        user.SetSalt((byte[])reader["SaltPassword"]);
+                        users.Add(user);
+                    }
+                }
+                _connection.GetConnection().Close();
+            }
+            return users;
+        }
+
+
+        
         public void Update(User user)
         {
             string query = "UPDATE Users SET Name = @Name, DateOfBirth = @DateOfBirth WHERE Email = @Email";

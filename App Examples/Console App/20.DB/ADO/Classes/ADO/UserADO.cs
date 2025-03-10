@@ -15,9 +15,9 @@ namespace BoscComa.ADO
 
         public void Create(User user)
         {
-            string query = "INSERT INTO Users (Uuid, Name, Email, DateOfBirth, PasswordHash, Salt) VALUES (@Uuid, @Name, @Email, @DateOfBirth, @PasswordHash, @Salt)";
+            string query = "INSERT INTO Users (Uuid, Name, Email, DateOfBirth, HashPassword, SaltPassword) VALUES (@Uuid, @Name, @Email, @DateOfBirth, @PasswordHash, @Salt)";
 
-            using (SqlCommand cmd = new SqlCommand(query, _connection))
+            using (SqlCommand cmd = new SqlCommand(query, _connection.GetConnection()))
             {
                 cmd.Parameters.AddWithValue("@Uuid", user.Uuid);
                 cmd.Parameters.AddWithValue("@Name", user.Name);
@@ -26,9 +26,9 @@ namespace BoscComa.ADO
                 cmd.Parameters.AddWithValue("@PasswordHash", user.GetHashPassword()); // Mètode que retorna byte[]
                 cmd.Parameters.AddWithValue("@Salt", user.GetSalt()); // Mètode que retorna byte[]
 
-                _connection.Open();
+                _connection.GetConnection().Open();
                 cmd.ExecuteNonQuery();
-                _connection.Close();
+                _connection.GetConnection().Close();
             }
         }
 
@@ -36,10 +36,10 @@ namespace BoscComa.ADO
         {
             string query = "SELECT * FROM Users WHERE Email = @Email";
 
-            using (SqlCommand cmd = new SqlCommand(query, _connection))
+            using (SqlCommand cmd = new SqlCommand(query, _connection.GetConnection()))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
-                _connection.Open();
+                _connection.GetConnection().Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     if (reader.Read())
@@ -51,13 +51,13 @@ namespace BoscComa.ADO
                             Email = reader["Email"].ToString(),
                             DateOfBirth = reader["DateOfBirth"] as DateTime?
                         };
-                        user.SetHashPassword((byte[])reader["PasswordHash"]);
-                        user.SetSalt((byte[])reader["Salt"]);
-                        _connection.Close();
+                        user.SetHashPassword((byte[])reader["HashPassword"]);
+                        user.SetSalt((byte[])reader["SaltPassword"]);
+                        _connection.GetConnection().Close();
                         return user;
                     }
                 }
-                _connection.Close();
+                _connection.GetConnection().Close();
             }
             return null;
         }
@@ -66,15 +66,15 @@ namespace BoscComa.ADO
         {
             string query = "UPDATE Users SET Name = @Name, DateOfBirth = @DateOfBirth WHERE Email = @Email";
 
-            using (SqlCommand cmd = new SqlCommand(query, _connection))
+            using (SqlCommand cmd = new SqlCommand(query, _connection.GetConnection()))
             {
                 cmd.Parameters.AddWithValue("@Name", user.Name);
                 cmd.Parameters.AddWithValue("@DateOfBirth", (object?)user.DateOfBirth ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Email", user.Email);
 
-                _connection.Open();
+                _connection.GetConnection().Open();
                 cmd.ExecuteNonQuery();
-                _connection.Close();
+                _connection.GetConnection().Close();
             }
         }
 
@@ -82,13 +82,13 @@ namespace BoscComa.ADO
         {
             string query = "DELETE FROM Users WHERE Email = @Email";
 
-            using (SqlCommand cmd = new SqlCommand(query, _connection))
+            using (SqlCommand cmd = new SqlCommand(query, _connection.GetConnection()))
             {
                 cmd.Parameters.AddWithValue("@Email", email);
 
-                _connection.Open();
+                _connection.GetConnection().Open();
                 cmd.ExecuteNonQuery();
-                _connection.Close();
+                _connection.GetConnection().Close();
             }
         }
     }

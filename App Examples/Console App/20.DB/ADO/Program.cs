@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Globalization;
 using static System.Console;
 using BoscComa.ADO;
+using BoscComa.Helper;
 
 namespace BoscComa.AppERP
 {
@@ -17,10 +17,10 @@ namespace BoscComa.AppERP
             
             User user = new User
             {
-                Uuid = CreateUUID(),
+                Uuid = Utils.CreateUUID(),
                 Name = "Joan", 
                 Email = "joan@gmail.com", 
-                DateOfBirth = ConvertToDate("18/12/2000","ca-ES")
+                DateOfBirth = Utils.ConvertToDate("18/12/2000","ca-ES")
             };
 
             user.SetPassword("Patata1234");
@@ -28,17 +28,6 @@ namespace BoscComa.AppERP
             userADO.Create(user);
         }
 
-        public static DateTime ConvertToDate(string date,string culture)
-        {
-            CultureInfo cultureInfo = new CultureInfo(culture);
-            return DateTime.Parse(date, cultureInfo);
-
-        }
-
-        public static string CreateUUID() 
-        {
-            Guid myuuid = Guid.NewGuid();
-            return myuuid.ToString();
-        }
+        
     }
 }

@@ -13,7 +13,7 @@ namespace BoscComa.ADO
             _connection = connection;
         }
 
-        public void Create(User user)
+        public bool Create(User user)
         {
             string query = "INSERT INTO Users (Uuid, Name, Email, DateOfBirth, HashPassword, SaltPassword) VALUES (@Uuid, @Name, @Email, @DateOfBirth, @PasswordHash, @Salt)";
 
@@ -30,6 +30,7 @@ namespace BoscComa.ADO
                 cmd.ExecuteNonQuery();
                 _connection.GetConnection().Close();
             }
+            return true;
         }
 
         public User? GetByEmail(string email)

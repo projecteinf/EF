@@ -14,10 +14,14 @@ namespace BoscComa.AppERP
         {
             Connection connection=ConnectToDB();
             IMapper mapper = ConfigMapper();
-            bool errorCreateingUser = CreateUser(connection);
-            
 
-            List<UserDTO> usersDTO = GetViewUsers(connection);
+            bool errorCreateingUser = CreateUser(connection);
+            List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
+            WriteLine("Dades de vista");
+            foreach (UserDTO user in usersDTO)
+            {
+                WriteLine($"User: {user.Uuid} - {user.Name} - {user.Email}");
+            }
         }
 
         private static IMapper ConfigMapper()
@@ -31,7 +35,7 @@ namespace BoscComa.AppERP
         }
         private static Connection ConnectToDB() 
         {
-            string path=@"/home/projecteinf/Projectes/2025/EF/App Examples/Console App/20.DB/ADO/Config";
+            string path=@"/home/projecteinf/Projectes/2025/EF/App Examples/Console App/20.DB/ADOExample/Config";
             string fileName=@"connction.enc";
             Connection.Inicialitzar(path, fileName);
             return Connection.ConnectionDB;
@@ -50,12 +54,11 @@ namespace BoscComa.AppERP
             return userADO.Create(user);
         }
 
-        private static List<UserDTO> GetViewUsers(Connection connection)
+        private static List<UserDTO> GetViewUsers(Connection connection, IMapper mapper)
         {
             UserADO userADO = new UserADO(connection);
             List<User> users = userADO.GetAllUsers();
-            // List<UserDTO> usersDTO = 
-            return null;
+            return mapper.Map<List<UserDTO>>(users);
         }
         
     }

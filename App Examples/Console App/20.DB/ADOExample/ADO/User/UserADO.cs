@@ -94,12 +94,13 @@ namespace BoscComa.ADO
 
 
         
-        public void Update(User user)
+        public bool Update(User user)
         {
-            string query = "UPDATE Users SET Name = @Name, DateOfBirth = @DateOfBirth WHERE Email = @Email";
+            string query = "UPDATE Users SET Name = @Name, DateOfBirth = @DateOfBirth, Email = @Email WHERE Uuid = @Uuid";
 
             using (SqlCommand cmd = new SqlCommand(query, _connection.GetConnection()))
             {
+                cmd.Parameters.AddWithValue("@Uuid", user.Uuid);
                 cmd.Parameters.AddWithValue("@Name", user.Name);
                 cmd.Parameters.AddWithValue("@DateOfBirth", (object?)user.DateOfBirth ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Email", user.Email);
@@ -108,6 +109,7 @@ namespace BoscComa.ADO
                 cmd.ExecuteNonQuery();
                 _connection.GetConnection().Close();
             }
+            return true;
         }
 
         public void Delete(string email)

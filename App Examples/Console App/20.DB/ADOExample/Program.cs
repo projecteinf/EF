@@ -17,18 +17,17 @@ namespace BoscComa.AppERP
 
             bool errorCreateingUser = CreateUser(connection);
             List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
-            WriteLine("Dades de vista");
-            foreach (UserDTO user in usersDTO)
-            {
-                WriteLine($"User: {user.Uuid} - {user.Name} - {user.Email}");
-            }
+            ViewData(usersDTO);
+            bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
+            usersDTO = GetViewUsers(connection, mapper);
+            ViewData(usersDTO);
         }
-
         private static IMapper ConfigMapper()
         {
             MapperConfiguration configMapper = new MapperConfiguration(config =>
                 {
                     config.CreateMap<User,UserDTO>();
+                    config.CreateMap<UserDTO,User>();
                 }
             );
             return configMapper.CreateMapper();
@@ -53,13 +52,26 @@ namespace BoscComa.AppERP
             UserADO userADO = new UserADO(connection);
             return userADO.Create(user);
         }
-
         private static List<UserDTO> GetViewUsers(Connection connection, IMapper mapper)
         {
             UserADO userADO = new UserADO(connection);
             List<User> users = userADO.GetAllUsers();
             return mapper.Map<List<UserDTO>>(users);
         }
-        
+        private static void ViewData(List<UserDTO> usersDTO)
+        {
+            WriteLine("Dades de vista");
+            foreach (UserDTO user in usersDTO)
+            {
+                WriteLine($"User: {user.Uuid} - {user.Name} - {user.Email}");
+            }
+        }
+        private static bool UpdateUser(UserDTO userDTO, Connection connection, IMapper mapper)
+        {
+            User user = mapper.Map<User>(userDTO);
+            user.Email="joan@boscdelacoma.cat";
+            UserADO userADO = new UserADO(connection);
+            return userADO.Update(user);
+        }
     }
 }

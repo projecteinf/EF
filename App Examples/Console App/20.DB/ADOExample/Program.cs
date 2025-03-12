@@ -21,6 +21,7 @@ namespace BoscComa.AppERP
             bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
             usersDTO = GetViewUsers(connection, mapper);
             ViewData(usersDTO);
+            bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
         }
         private static IMapper ConfigMapper()
         {
@@ -72,6 +73,19 @@ namespace BoscComa.AppERP
             user.Email="joan@boscdelacoma.cat";
             UserADO userADO = new UserADO(connection);
             return userADO.Update(user);
+        }
+        private static bool CreateItem(Connection connection, string userOwner)
+        {
+            Item item = new Item
+                {
+                    Uuid = Utils.CreateUUID(),
+                    Name = "Gasoil", 
+                    Price = 1.45m,          // m per a indicar que és decimal!
+                    UserOwner = userOwner
+                };
+            
+            ItemADO itemADO = new ItemADO(connection);
+            return itemADO.Create(item);
         }
     }
 }

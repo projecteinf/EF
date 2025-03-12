@@ -7,12 +7,10 @@ namespace BoscComa.ADO
     public class UserADO
     {
         private readonly IConnection _connection;
-
         public UserADO(IConnection connection)
         {
             _connection = connection;
         }
-
         public bool Create(User user)
         {
             string query = "INSERT INTO Users (Uuid, Name, Email, DateOfBirth, HashPassword, SaltPassword) VALUES (@Uuid, @Name, @Email, @DateOfBirth, @PasswordHash, @Salt)";
@@ -32,7 +30,6 @@ namespace BoscComa.ADO
             }
             return true;
         }
-
         public User? GetByEmail(string email)
         {
             string query = "SELECT * FROM Users WHERE Email = @Email";
@@ -50,7 +47,7 @@ namespace BoscComa.ADO
                             Uuid = reader["Uuid"].ToString(),
                             Name = reader["Name"].ToString(),
                             Email = reader["Email"].ToString(),
-                            DateOfBirth = reader["DateOfBirth"] as DateTime?
+                            DateOfBirth = reader["DateOfBirth"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["DateOfBirth"])
                         };
                         user.SetHashPassword((byte[])reader["HashPassword"]);
                         user.SetSalt((byte[])reader["SaltPassword"]);
@@ -62,7 +59,6 @@ namespace BoscComa.ADO
             }
             return null;
         }
-
         public List<User> GetAllUsers()
         {
             List<User> users = new List<User>();
@@ -80,7 +76,7 @@ namespace BoscComa.ADO
                             Uuid = reader["Uuid"].ToString(),
                             Name = reader["Name"].ToString(),
                             Email = reader["Email"].ToString(),
-                            DateOfBirth = reader["DateOfBirth"] as DateTime?
+                            DateOfBirth = reader["DateOfBirth"] == DBNull.Value ? (DateTime?)null : Convert.ToDateTime(reader["DateOfBirth"])
                         };
                         user.SetHashPassword((byte[])reader["HashPassword"]);
                         user.SetSalt((byte[])reader["SaltPassword"]);
@@ -91,9 +87,6 @@ namespace BoscComa.ADO
             }
             return users;
         }
-
-
-        
         public bool Update(User user)
         {
             string query = "UPDATE Users SET Name = @Name, DateOfBirth = @DateOfBirth, Email = @Email WHERE Uuid = @Uuid";
@@ -111,7 +104,6 @@ namespace BoscComa.ADO
             }
             return true;
         }
-
         public void Delete(string email)
         {
             string query = "DELETE FROM Users WHERE Email = @Email";

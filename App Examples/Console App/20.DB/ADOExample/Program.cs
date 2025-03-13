@@ -1,4 +1,8 @@
-﻿using System;
+﻿/// <summary>
+//  Instal·lació del paquet Docker.DotNet per a parar el docker quan la connexió ja està establerta
+//  dotnet add package Docker.DotNet
+/// </summary>
+using System;
 using AutoMapper;
 using System.Collections;
 using static System.Console;
@@ -13,6 +17,7 @@ namespace BoscComa.AppERP
         public static void Main() 
         {
             Connection connection=ConnectToDB();
+            Utils.StopDocker("sqlserver");
             IMapper mapper = ConfigMapper();
 
             bool errorCreateingUser = CreateUser(connection);

@@ -1,7 +1,12 @@
-﻿/// <summary>
-//  Instal·lació del paquet Docker.DotNet per a parar el docker quan la connexió ja està establerta
-//  dotnet add package Docker.DotNet
-/// </summary>
+﻿///
+///     ATENCIO: EXECUTAR AMB sudo per poder operar amb els contenidors
+/// 
+///         sudo dotnet run 
+/// 
+///  Instal·lació del paquet Docker.DotNet per a parar el docker quan la connexió ja està establerta
+///     
+///         dotnet add package Docker.DotNet
+/// 
 using System;
 using AutoMapper;
 using System.Collections;
@@ -9,24 +14,37 @@ using static System.Console;
 using BoscComa.ADO;
 using BoscComa.Helper;
 using BoscComa.DTO;
+using System.Threading.Tasks;
 
 namespace BoscComa.AppERP
 {
     public class Program 
     {
-        public static void Main() 
+        public static async Task Main() 
         {
             Connection connection=ConnectToDB();
-            Utils.StopDocker("sqlserver");
+            await Utils.StopDocker("sqlserver");
             IMapper mapper = ConfigMapper();
 
-            bool errorCreateingUser = CreateUser(connection);
-            List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
-            ViewData(usersDTO);
-            bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
-            usersDTO = GetViewUsers(connection, mapper);
-            ViewData(usersDTO);
-            bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
+            try 
+            {
+                bool errorCreateingUser = CreateUser(connection);
+                List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
+                ViewData(usersDTO);
+                bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
+                usersDTO = GetViewUsers(connection, mapper);
+                ViewData(usersDTO);
+                bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
+            }
+            catch (Exception ex)
+            {
+                WriteLine("Error...");
+            }
+            finally 
+            {
+                await Utils.StartDocker("sqlserver");
+            }
+            
         }
         private static IMapper ConfigMapper()
         {

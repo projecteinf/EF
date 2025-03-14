@@ -1,6 +1,7 @@
 using System;
 using System.Text;
 using System.Security.Cryptography;
+using System.Collections.Generic;
 using BoscComa.GestioErrors;
 using BoscComa.Xifratge;
 
@@ -18,6 +19,13 @@ namespace BoscComa.Connexio
             this._user = user;
             this._password = password;
             this._database = database;
+        }
+        public StringConnection(string stringConnection)
+        {
+            Dictionary<string, string> connectionParameters = this.ParseConnectionString(stringConnection);
+            this._host =  connectionParameters.GetValueOrDefault("server", null);
+            this._database = connectionParameters.GetValueOrDefault("database", null);
+            this._user = connectionParameters.GetValueOrDefault("user id", null);            
         }
         public string GetHost() 
         {   
@@ -124,6 +132,26 @@ namespace BoscComa.Connexio
         private string GetStringConnection() 
         {
             return $"Server={this._host};Database={this._database};User Id={this._user};Password={this._password};TrustServerCertificate=True";
+        }
+
+        private  Dictionary<string, string> ParseConnectionString(string connectionString)
+        {
+            // Exemple cadena de connexió
+            //      Server=localhost;Database=dbDemo;User Id=SA;Password=Patata1234;TrustServerCertificate=True
+
+            Dictionary<string, string> connectionParameters = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+            string[] parameters = connectionString.Split(';');
+
+            foreach (var param in parameters)
+            {
+                string[] keyValue = param.Split('=', 2); // El valor podria contenir = . Tallem a partir del primer = en 2 parts.
+                if (keyValue.Length == 2)
+                {
+                    connectionParameters[keyValue[0].Trim().ToLower()] = keyValue[1].Trim();
+                }
+            }
+
+            return connectionParameters;
         }
     }
 }

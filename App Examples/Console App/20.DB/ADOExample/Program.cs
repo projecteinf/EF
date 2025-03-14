@@ -15,6 +15,7 @@ using BoscComa.ADO;
 using BoscComa.Helper;
 using BoscComa.DTO;
 using System.Threading.Tasks;
+using BoscComa.GestioErrors;
 
 namespace BoscComa.AppERP
 {
@@ -22,19 +23,17 @@ namespace BoscComa.AppERP
     {
         public static async Task Main() 
         {
-            Connection connection=ConnectToDB();
             await Utils.StopDocker("sqlserver");
             IMapper mapper = ConfigMapper();
 
+            Connection connection=ConnectToDB();
             try 
             {
-                bool errorCreateingUser = CreateUser(connection);
-                List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
-                ViewData(usersDTO);
-                bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
-                usersDTO = GetViewUsers(connection, mapper);
-                ViewData(usersDTO);
-                bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
+                connection.Obrir();
+            }
+            catch (DBException dbex)
+            {
+                Write("DBException...");
             }
             catch (Exception ex)
             {
@@ -44,6 +43,14 @@ namespace BoscComa.AppERP
             {
                 await Utils.StartDocker("sqlserver");
             }
+                // bool errorCreateingUser = CreateUser(connection);
+                // List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
+                // ViewData(usersDTO);
+                // bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
+                // usersDTO = GetViewUsers(connection, mapper);
+                // ViewData(usersDTO);
+                // bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
+            
             
         }
         private static IMapper ConfigMapper()

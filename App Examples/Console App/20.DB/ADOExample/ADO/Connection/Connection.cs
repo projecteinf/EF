@@ -5,28 +5,19 @@
 
 using Microsoft.Data.SqlClient;
 using BoscComa.Connexio;
+using BoscComa.GestioErrors;
 
 namespace BoscComa.ADO
 {
     public class Connection : IConnection
     {
-        public static Connection _connectionDB;
+        public static Connection? _connectionDB;
         public SqlConnection ConnectionMSSQL;        
+        private string connectionString;    // Necessitem la cadena de connexió per a poder obtenir els paràmetres host,database,user. Cal pensar una millor opció!!
         private Connection(string path,string fileName) 
         {
-            string connectionString = StringConnection.GetDecrypt(path,fileName);
-            try 
-            {
-                this.ConnectionMSSQL = new SqlConnection(connectionString);
-            }
-            catch (SqlException sqlEx)
-            {
-                throw new Exception("Error en la connexió.", sqlEx);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error en la connexió.", ex);
-            }
+            this.connectionString = StringConnection.GetDecrypt(path,fileName);
+            this.ConnectionMSSQL = new SqlConnection(connectionString);
         }
         public static void Inicialitzar(string path,string fileName) 
         {
@@ -48,9 +39,23 @@ namespace BoscComa.ADO
         }
         public void Obrir()
         {
-            if (this.ConnectionMSSQL.State == System.Data.ConnectionState.Closed)
+            try 
             {
-                this.ConnectionMSSQL.Open();
+                if (this.ConnectionMSSQL.State == System.Data.ConnectionState.Closed)
+                {
+                    this.ConnectionMSSQL.Open();
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                Console.WriteLine("Excepció de SQL. Llancem una excepció DBException");
+                StringConnection connection = new StringConnection(this.connectionString);
+                throw new DBException(sqlEx.Message, DBOperation.Open, sqlEx.ErrorCode, connection.GetHost(), connection.GetDatabase(), connection.GetUser(), sqlEx);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Excepció General");
+                throw new Exception("Error en la connexió.", ex);
             }
         }
         public void Tancar()

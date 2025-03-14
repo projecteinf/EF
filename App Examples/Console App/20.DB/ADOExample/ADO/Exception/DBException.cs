@@ -4,7 +4,6 @@ namespace BoscComa.GestioErrors
 {
     public enum DBOperation
     {
-        Connect,
         Open,
         Close
     }

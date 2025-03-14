@@ -1,6 +1,7 @@
 using System;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using BoscComa.GestioErrors;
 
 namespace BoscComa.ADO
 {
@@ -24,8 +25,21 @@ namespace BoscComa.ADO
                 cmd.Parameters.AddWithValue("@PasswordHash", user.GetHashPassword()); // Mètode que retorna byte[]
                 cmd.Parameters.AddWithValue("@Salt", user.GetSalt()); // Mètode que retorna byte[]
 
-                _connection.GetConnection().Open();
-                cmd.ExecuteNonQuery();
+                try
+                {
+                    _connection.Obrir();
+                    cmd.ExecuteNonQuery();
+                }
+                catch (SqlException sqlex)
+                {
+                    Console.WriteLine("Exception de base de dades");
+                    throw sqlex;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Exception general");
+                    throw ex;
+                }
                 _connection.GetConnection().Close();
             }
             return true;

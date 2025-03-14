@@ -5,5 +5,7 @@ namespace BoscComa.ADO
     public interface IConnection
     {
         SqlConnection GetConnection();
+        void Obrir();
+        void Tancar();
     }
 }

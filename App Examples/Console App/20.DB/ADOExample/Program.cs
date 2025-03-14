@@ -27,23 +27,9 @@ namespace BoscComa.AppERP
             IMapper mapper = ConfigMapper();
 
             Connection connection=ConnectToDB();
-            try 
-            {
-                connection.Obrir();
-            }
-            catch (DBException dbex)
-            {
-                Write("DBException...");
-            }
-            catch (Exception ex)
-            {
-                WriteLine("Error...");
-            }
-            finally 
-            {
-                await Utils.StartDocker("sqlserver");
-            }
-                // bool errorCreateingUser = CreateUser(connection);
+           
+            bool errorCreateingUser = CreateUser(connection);
+            await Utils.StartDocker("sqlserver");   
                 // List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
                 // ViewData(usersDTO);
                 // bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
@@ -81,7 +67,19 @@ namespace BoscComa.AppERP
                 };
             user.SetPassword("Patata1234");
             UserADO userADO = new UserADO(connection);
-            return userADO.Create(user);
+            try 
+            {
+                return userADO.Create(user);
+            }
+            catch (DBException dbex)
+            {
+                Write("DBException...");
+            }
+            catch (Exception ex)
+            {
+                WriteLine("Error...");
+            }
+            return false;
         }
         private static List<UserDTO> GetViewUsers(Connection connection, IMapper mapper)
         {

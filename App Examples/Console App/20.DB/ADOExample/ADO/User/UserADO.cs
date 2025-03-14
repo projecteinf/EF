@@ -30,14 +30,16 @@ namespace BoscComa.ADO
                     _connection.Obrir();
                     cmd.ExecuteNonQuery();
                 }
+                catch (DBException dbex)
+                {
+                    throw dbex;
+                }
                 catch (SqlException sqlex)
                 {
-                    Console.WriteLine("Exception de base de dades");
                     throw sqlex;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine("Exception general");
                     throw ex;
                 }
                 _connection.GetConnection().Close();

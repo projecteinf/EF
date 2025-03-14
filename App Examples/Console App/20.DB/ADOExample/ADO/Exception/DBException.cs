@@ -1,4 +1,5 @@
 using System.IO;
+using static System.Console;
 
 namespace BoscComa.GestioErrors
 {
@@ -32,6 +33,10 @@ namespace BoscComa.GestioErrors
             this.Server = server;
             this.Database = database;
             this.User = user;
+        }
+        public string ToString()
+        {
+            return $"Error: {this.Message}\n InnerException: \n{this.InnerException}";
         }
     }
 }

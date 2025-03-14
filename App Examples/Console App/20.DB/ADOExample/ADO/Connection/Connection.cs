@@ -48,13 +48,11 @@ namespace BoscComa.ADO
             }
             catch (SqlException sqlEx)
             {
-                Console.WriteLine("Excepció de SQL. Llancem una excepció DBException");
                 StringConnection connection = new StringConnection(this.connectionString);
                 throw new DBException(sqlEx.Message, DBOperation.Open, sqlEx.ErrorCode, connection.GetHost(), connection.GetDatabase(), connection.GetUser(), sqlEx);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Excepció General");
                 throw new Exception("Error en la connexió.", ex);
             }
         }

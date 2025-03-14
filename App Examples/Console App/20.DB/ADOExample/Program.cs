@@ -10,11 +10,12 @@
 using System;
 using AutoMapper;
 using System.Collections;
+using Microsoft.Data.SqlClient;
+using System.Threading.Tasks;
 using static System.Console;
 using BoscComa.ADO;
 using BoscComa.Helper;
 using BoscComa.DTO;
-using System.Threading.Tasks;
 using BoscComa.GestioErrors;
 
 namespace BoscComa.AppERP
@@ -26,16 +27,32 @@ namespace BoscComa.AppERP
             await Utils.StopDocker("sqlserver");
             IMapper mapper = ConfigMapper();
 
-            Connection connection=ConnectToDB();
+            Connection connection=ConnectToDB();    // Sembla que la connexió no pot fallar. Amb DOCKER aturat no dóna error!
            
-            bool errorCreateingUser = CreateUser(connection);
+            try 
+            {
+                bool errorCreateingUser = CreateUser(connection);
+            }
+            catch (DBException dbex)
+            {
+                WriteLine(dbex);
+            }
+            catch (SqlException sqlex)
+            {
+                WriteLine(sqlex);
+            }
+            catch (Exception ex)
+            {
+                WriteLine(ex);
+            }
+            
             await Utils.StartDocker("sqlserver");   
-                // List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
-                // ViewData(usersDTO);
-                // bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
-                // usersDTO = GetViewUsers(connection, mapper);
-                // ViewData(usersDTO);
-                // bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
+            // List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
+            // ViewData(usersDTO);
+            // bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
+            // usersDTO = GetViewUsers(connection, mapper);
+            // ViewData(usersDTO);
+            // bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
             
             
         }
@@ -73,11 +90,11 @@ namespace BoscComa.AppERP
             }
             catch (DBException dbex)
             {
-                Write("DBException...");
+                throw dbex;
             }
             catch (Exception ex)
             {
-                WriteLine("Error...");
+                throw ex;
             }
             return false;
         }

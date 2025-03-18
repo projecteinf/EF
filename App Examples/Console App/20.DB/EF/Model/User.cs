@@ -1,6 +1,6 @@
 using System;
 
-namespace BoscComa.ADO
+namespace BoscComa.EF
 {
     public class User
     {

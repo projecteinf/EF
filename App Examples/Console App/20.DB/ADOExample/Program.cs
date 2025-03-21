@@ -24,7 +24,7 @@ namespace BoscComa.AppERP
     {
         public static async Task Main() 
         {
-            await Utils.StopDocker("sqlserver");
+            // await Utils.StopDocker("sqlserver");
             IMapper mapper = ConfigMapper();
 
             Connection connection=ConnectToDB();    // Sembla que la connexió no pot fallar. Amb DOCKER aturat no dóna error!
@@ -46,13 +46,16 @@ namespace BoscComa.AppERP
                 WriteLine(ex);
             }
             
-            await Utils.StartDocker("sqlserver");   
-            // List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
-            // ViewData(usersDTO);
-            // bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
-            // usersDTO = GetViewUsers(connection, mapper);
-            // ViewData(usersDTO);
-            // bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
+            WriteLine($"Usuari loginejat: {Login(connection,"Patata1234")}");
+            WriteLine($"Usuari loginejat error: {Login(connection,"Patata12345")}");
+
+            // await Utils.StartDocker("sqlserver");   
+            List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
+            ViewData(usersDTO);
+            bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
+            usersDTO = GetViewUsers(connection, mapper);
+            ViewData(usersDTO);
+            bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
             
             
         }
@@ -72,6 +75,12 @@ namespace BoscComa.AppERP
             string fileName=@"connction.enc";
             Connection.Inicialitzar(path, fileName);
             return Connection.ConnectionDB;
+        }
+        private static User Login(Connection connection, string password)
+        {
+            UserADO userADO = new UserADO(connection);
+            User user = userADO.GetByEmail("joan@gmail.com");
+            return user.Login(password);
         }
         private static bool CreateUser(Connection connection)
         {

@@ -76,11 +76,11 @@ namespace BoscComa.AppERP
             Connection.Inicialitzar(path, fileName);
             return Connection.ConnectionDB;
         }
-        private static User Login(Connection connection, string password)
+        private static string Login(Connection connection, string password)
         {
             UserADO userADO = new UserADO(connection);
             User user = userADO.GetByEmail("joan@gmail.com");
-            return user.Login(password);
+            return user.Login(password)?Token.GenerateJwtToken(user):null;
         }
         private static bool CreateUser(Connection connection)
         {

@@ -37,16 +37,9 @@ namespace BoscComa.ADO
             string checkPassword = Convert.ToBase64String(Password.GetHashPassword(password,this._salt));
             return currentPassword.Equals(checkPassword);
         }
-        public User? Login(string password)
+        public bool Login(string password)
         {
-            if (this.VerifyPassword(password))
-            {
-                return this;
-            }
-            else
-            {
-                return null;
-            }
+            return this.VerifyPassword(password);
         }
         public override string ToString() 
         {

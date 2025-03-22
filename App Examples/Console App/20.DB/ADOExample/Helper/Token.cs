@@ -1,8 +1,11 @@
 /// 
+/// dotnet add package Microsoft.IdentityModel.Tokens
 /// dotnet add package System.IdentityModel.Tokens.Jwt
-/// s
+/// 
 
+using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 using BoscComa.Xifratge;
 
 namespace BoscComa.ADO
@@ -16,8 +19,6 @@ namespace BoscComa.ADO
             SigningCredentials signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
             JwtSecurityToken token = new JwtSecurityToken(
-                isssuer: "your_issuer",
-                audience: "Your_audience",
                 claims: new List<Claim>(),
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: signingCredentials

@@ -82,7 +82,7 @@ namespace BoscComa.AppERP
             User user = userADO.GetByEmail("joan@gmail.com");
             if (user.Login(password)) 
             {
-                return Token.GenerateJwtToken(user);
+                return (TokenResponse)Token.GenerateJwtToken(user, new TokenResponse());
             }
             return null;
         }

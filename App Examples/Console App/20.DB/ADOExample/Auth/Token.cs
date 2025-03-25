@@ -7,6 +7,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using BoscComa.Xifratge;
+using BoscComa.Helper;
 
 namespace BoscComa.ADO
 {
@@ -14,7 +15,9 @@ namespace BoscComa.ADO
     {
         public static string AccessToken { get; set; }
         public static string RefreshToken { get; set; }
-        static public TokenResponse GenerateJwtToken(User user)
+
+        // Aplicació de SOLID
+        public static ITokenResponse GenerateJwtToken(User user,ITokenResponse tokenResponse)
         {
             DadesXifratgeAES xifratge = DadesXifratgeAES.XifratgeAES;
             byte[] keyBytes = xifratge.GetKey();
@@ -41,11 +44,12 @@ namespace BoscComa.ADO
                 expires: DateTime.UtcNow.AddMinutes(30),    // UtcNow considera els fusos horaris
                 signingCredentials: signingCredentials
             );
-            return new TokenResponse 
-            {
-                AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
-                RefreshToken = new JwtSecurityTokenHandler().WriteToken(token)
-            };
+
+            tokenResponse.AccessToken = new JwtSecurityTokenHandler().WriteToken(token);
+            tokenResponse.RefreshToken = RandomGenerator.GenerateSecureToken(64); // Token => Cadena aleatòria llarga
+            
+            tokenResponse.Save();
+            return tokenResponse;
         }
     }
 }

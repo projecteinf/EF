@@ -12,15 +12,18 @@ namespace BoscComa.ADO
 {
     static class Token
     {
-        static public string GenerateJwtToken(User user)
+        public static string AccessToken { get; set; }
+        public static string RefreshToken { get; set; }
+        static public void GenerateJwtToken(User user)
         {
             DadesXifratgeAES xifratge = DadesXifratgeAES.XifratgeAES;
             byte[] keyBytes = xifratge.GetKey();
 
             if (keyBytes == null || keyBytes.Length < 32) 
-                throw new InvalidOperationException("La clau de xifratge no és vàlida.");
+                throw new InvalidOperationException("La clau de xifratge no és vàlida.");   // Millorar amb error personalitzat
             
-            SymmetricSecurityKey symmetricSecurityKey = new SymmetricSecurityKey(xifratge.GetKey());
+            // Backend genera i valida tokens => podem utilitzar clau simètrica.
+            SymmetricSecurityKey symmetricSecurityKey = new SymmetricSecurityKey(xifratge.GetKey());    
             SigningCredentials signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha256);
 
             List<Claim> claims = new List<Claim>
@@ -38,8 +41,8 @@ namespace BoscComa.ADO
                 expires: DateTime.UtcNow.AddMinutes(30),    // UtcNow considera els fusos horaris
                 signingCredentials: signingCredentials
             );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            Token.AccessToken = new JwtSecurityTokenHandler().WriteToken(token);
+            Token.RefreshToken = new JwtSecurityTokenHandler().WriteToken(token);
         }
 
 

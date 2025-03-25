@@ -80,7 +80,12 @@ namespace BoscComa.AppERP
         {
             UserADO userADO = new UserADO(connection);
             User user = userADO.GetByEmail("joan@gmail.com");
-            return user.Login(password)?Token.GenerateJwtToken(user):null;
+            if (user.Login(password)) 
+            {
+                Token.GenerateJwtToken(user);
+                return Token.AccessToken;
+            }
+            return null;
         }
         private static bool CreateUser(Connection connection)
         {

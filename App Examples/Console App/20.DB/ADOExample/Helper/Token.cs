@@ -35,7 +35,7 @@ namespace BoscComa.ADO
                 issuer: "Bosc de la Coma",
                 audience: "Bosc de la Coma",
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.UtcNow.AddMinutes(30),    // UtcNow considera els fusos horaris
                 signingCredentials: signingCredentials
             );
 

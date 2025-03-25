@@ -14,7 +14,7 @@ namespace BoscComa.ADO
     {
         public static string AccessToken { get; set; }
         public static string RefreshToken { get; set; }
-        static public void GenerateJwtToken(User user)
+        static public TokenResponse GenerateJwtToken(User user)
         {
             DadesXifratgeAES xifratge = DadesXifratgeAES.XifratgeAES;
             byte[] keyBytes = xifratge.GetKey();
@@ -41,10 +41,11 @@ namespace BoscComa.ADO
                 expires: DateTime.UtcNow.AddMinutes(30),    // UtcNow considera els fusos horaris
                 signingCredentials: signingCredentials
             );
-            Token.AccessToken = new JwtSecurityTokenHandler().WriteToken(token);
-            Token.RefreshToken = new JwtSecurityTokenHandler().WriteToken(token);
+            return new TokenResponse 
+            {
+                AccessToken = new JwtSecurityTokenHandler().WriteToken(token),
+                RefreshToken = new JwtSecurityTokenHandler().WriteToken(token)
+            };
         }
-
-
     }
 }

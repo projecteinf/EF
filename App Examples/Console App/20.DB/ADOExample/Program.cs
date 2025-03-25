@@ -46,8 +46,8 @@ namespace BoscComa.AppERP
                 WriteLine(ex);
             }
             
-            WriteLine($"Usuari loginejat: {Login(connection,"Patata1234")}");
-            WriteLine($"Usuari loginejat error: {Login(connection,"Patata12345")}");
+            WriteLine($"Usuari loginejat: {Login(connection,"Patata1234").AccessToken}");
+            WriteLine($"Usuari loginejat error: {Login(connection,"Patata12345")?.AccessToken}");
 
             // await Utils.StartDocker("sqlserver");   
             List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
@@ -76,14 +76,13 @@ namespace BoscComa.AppERP
             Connection.Inicialitzar(path, fileName);
             return Connection.ConnectionDB;
         }
-        private static string Login(Connection connection, string password)
+        private static TokenResponse? Login(Connection connection, string password)
         {
             UserADO userADO = new UserADO(connection);
             User user = userADO.GetByEmail("joan@gmail.com");
             if (user.Login(password)) 
             {
-                Token.GenerateJwtToken(user);
-                return Token.AccessToken;
+                return Token.GenerateJwtToken(user);
             }
             return null;
         }

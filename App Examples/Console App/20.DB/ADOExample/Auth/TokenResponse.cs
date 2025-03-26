@@ -1,3 +1,11 @@
+/// Instal·lació paquet gestió bd amb Redis
+/// dotnet add package NRedisStack
+/// 
+
+using NRedisStack;
+using NRedisStack.RedisStackCommands;
+using StackExchange.Redis;
+
 namespace BoscComa.ADO
 {
     public class TokenResponse : ITokenResponse
@@ -7,7 +15,9 @@ namespace BoscComa.ADO
 
         public void Save()
         {
-            Console.WriteLine("Pendent implementar");
+            ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect("localhost");
+            IDatabase db = connectionMultiplexer.GetDatabase();
+            Console.WriteLine($"GET DATABASE {db}");
         }
     }
 }

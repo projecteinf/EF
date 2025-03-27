@@ -2,6 +2,7 @@
 /// dotnet add package NRedisStack
 /// 
 
+using BoscComa.ADO;
 using NRedisStack;
 using NRedisStack.RedisStackCommands;
 using StackExchange.Redis;
@@ -12,4 +13,5 @@ public class TokenResponseADO {
         {
             _connection = connection;
         }
+        
 }

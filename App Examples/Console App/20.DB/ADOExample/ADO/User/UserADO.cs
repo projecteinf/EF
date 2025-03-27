@@ -7,8 +7,8 @@ namespace BoscComa.ADO
 {
     public class UserADO
     {
-        private readonly IConnection _connection;
-        public UserADO(IConnection connection)
+        private readonly IConnection<SqlConnection> _connection;
+        public UserADO(IConnection<SqlConnection> connection)
         {
             _connection = connection;
         }

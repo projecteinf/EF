@@ -6,6 +6,7 @@
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using BoscComa.ADO;
 using BoscComa.Xifratge;
 using BoscComa.Helper;
 
@@ -15,7 +16,6 @@ namespace BoscComa.ADO
     {
         public static string AccessToken { get; set; }
         public static string RefreshToken { get; set; }
-
         // Aplicació de SOLID
         public static ITokenResponse GenerateJwtToken(User user,ITokenResponse tokenResponse)
         {
@@ -48,7 +48,8 @@ namespace BoscComa.ADO
             tokenResponse.AccessToken = new JwtSecurityTokenHandler().WriteToken(token);
             tokenResponse.RefreshToken = RandomGenerator.GenerateSecureToken(64); // Token => Cadena aleatòria llarga
             
-            tokenResponse.Save();
+            
+            
             return tokenResponse;
         }
     }

@@ -9,33 +9,33 @@ using BoscComa.GestioErrors;
 
 namespace BoscComa.ADO
 {
-    public class XifredConnection : IConnection
+    public class MSSQLConnection : IConnection<SqlConnection>
     {
-        public static XifredConnection? _connectionDB;
+        public static MSSQLConnection? _connectionDB;
         public SqlConnection ConnectionMSSQL;        
         private string connectionString;    // Necessitem la cadena de connexió per a poder obtenir els paràmetres host,database,user. Cal pensar una millor opció!!
-        private XifredConnection(string path,string fileName) 
+        private MSSQLConnection(string path,string fileName) 
         {
             this.connectionString = StringConnection.GetDecrypt(path,fileName);
             this.ConnectionMSSQL = new SqlConnection(connectionString);
         }
         public static void Inicialitzar(string path,string fileName) 
         {
-            if (XifredConnection._connectionDB == null) 
+            if (MSSQLConnection._connectionDB == null) 
             {
-                XifredConnection._connectionDB = new XifredConnection(path,fileName);
+                MSSQLConnection._connectionDB = new MSSQLConnection(path,fileName);
             }
         }
 
-        public static XifredConnection ConnectionDB
+        public static MSSQLConnection ConnectionDB
         {
             get
             {
-                if (XifredConnection._connectionDB == null) 
+                if (MSSQLConnection._connectionDB == null) 
                 {
                     throw new InvalidOperationException("La connexió no ha estat inicialitzada. Crida Initialize() primer.");
                 }
-                return XifredConnection._connectionDB; 
+                return MSSQLConnection._connectionDB; 
             }
         }
         public void Obrir()

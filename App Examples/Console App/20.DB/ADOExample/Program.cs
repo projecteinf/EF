@@ -27,7 +27,7 @@ namespace BoscComa.AppERP
             // await Utils.StopDocker("sqlserver");
             IMapper mapper = ConfigMapper();
 
-            XifredConnection connection=ConnectToDB();    // Sembla que la connexió no pot fallar. Amb DOCKER aturat no dóna error!
+            MSSQLConnection connection=ConnectToDB();    // Sembla que la connexió no pot fallar. Amb DOCKER aturat no dóna error!
            
             try 
             {
@@ -46,7 +46,10 @@ namespace BoscComa.AppERP
                 WriteLine(ex);
             }
             
-            WriteLine($"Usuari loginejat: {Login(connection,"Patata1234").AccessToken}");
+            TokenResponse tokenResponse = Login(connection,"Patata1234");
+            ConnectionRedis connectionRedis = ConnectionRedis.Inicialitzar("localhost");
+            TokenResponseADO tokenResponseADO = new TokenResponseADO();
+            tokenResponseADO.Save(tokenResponse);
             WriteLine($"Usuari loginejat error: {Login(connection,"Patata12345")?.AccessToken}");
 
             // await Utils.StartDocker("sqlserver");   
@@ -69,14 +72,14 @@ namespace BoscComa.AppERP
             );
             return configMapper.CreateMapper();
         }
-        private static XifredConnection ConnectToDB() 
+        private static MSSQLConnection ConnectToDB() 
         {
             string path=@"/home/projecteinf/Projectes/2025/EF/App Examples/Console App/20.DB/ADOExample/Config";
             string fileName=@"connction.enc";
-            XifredConnection.Inicialitzar(path, fileName);
-            return XifredConnection.ConnectionDB;
+            MSSQLConnection.Inicialitzar(path, fileName);
+            return MSSQLConnection.ConnectionDB;
         }
-        private static TokenResponse? Login(XifredConnection connection, string password)
+        private static TokenResponse? Login(MSSQLConnection connection, string password)
         {
             UserADO userADO = new UserADO(connection);
             User user = userADO.GetByEmail("joan@gmail.com");
@@ -86,7 +89,7 @@ namespace BoscComa.AppERP
             }
             return null;
         }
-        private static bool CreateUser(XifredConnection connection)
+        private static bool CreateUser(MSSQLConnection connection)
         {
             User user = new User
                 {
@@ -111,7 +114,7 @@ namespace BoscComa.AppERP
             }
             return false;
         }
-        private static List<UserDTO> GetViewUsers(XifredConnection connection, IMapper mapper)
+        private static List<UserDTO> GetViewUsers(MSSQLConnection connection, IMapper mapper)
         {
             UserADO userADO = new UserADO(connection);
             List<User> users = userADO.GetAllUsers();
@@ -125,14 +128,14 @@ namespace BoscComa.AppERP
                 WriteLine($"User: {user.Uuid} - {user.Name} - {user.Email}");
             }
         }
-        private static bool UpdateUser(UserDTO userDTO, XifredConnection connection, IMapper mapper)
+        private static bool UpdateUser(UserDTO userDTO, MSSQLConnection connection, IMapper mapper)
         {
             User user = mapper.Map<User>(userDTO);
             user.Email="joan@boscdelacoma.cat";
             UserADO userADO = new UserADO(connection);
             return userADO.Update(user);
         }
-        private static bool CreateItem(XifredConnection connection, string userOwner)
+        private static bool CreateItem(MSSQLConnection connection, string userOwner)
         {
             Item item = new Item
                 {

@@ -50,6 +50,7 @@ namespace BoscComa.AppERP
             ConnectionRedis.Inicialitzar("localhost");
             TokenResponseADO tokenResponseADO = new TokenResponseADO(ConnectionRedis.ConnectionDB);
             tokenResponseADO.Save(tokenResponse);
+            EscriureTokenRefresh(tokenResponse);
             WriteLine($"Usuari loginejat error: {Login(connection,"Patata12345")?.AccessToken}");
 
             // await Utils.StartDocker("sqlserver");   
@@ -147,6 +148,15 @@ namespace BoscComa.AppERP
             
             ItemADO itemADO = new ItemADO(connection);
             return itemADO.Create(item);
+        }
+        private static async Task EscriureTokenRefresh(TokenResponse token)
+        {
+            string key = $"refresh:{token.RefreshToken}";
+            var allFields = ConnectionRedis.ConnectionDB.GetConnection().HashGetAll(key);
+            foreach (var field in allFields)
+            {
+                WriteLine($"{field.Name}: {field.Value}");
+            }
         }
     }
 }

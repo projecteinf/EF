@@ -17,6 +17,9 @@ using BoscComa.ADO;
 using BoscComa.Helper;
 using BoscComa.DTO;
 using BoscComa.GestioErrors;
+using NRedisStack;
+using NRedisStack.RedisStackCommands;
+using StackExchange.Redis;
 
 namespace BoscComa.AppERP
 {
@@ -152,7 +155,7 @@ namespace BoscComa.AppERP
         private static async Task EscriureTokenRefresh(TokenResponse token)
         {
             string key = $"refresh:{token.RefreshToken}";
-            var allFields = ConnectionRedis.ConnectionDB.GetConnection().HashGetAll(key);
+            HashEntry[] allFields = ConnectionRedis.ConnectionDB.GetConnection().HashGetAll(key);
             foreach (var field in allFields)
             {
                 WriteLine($"{field.Name}: {field.Value}");

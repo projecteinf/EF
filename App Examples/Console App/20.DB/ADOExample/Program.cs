@@ -47,8 +47,8 @@ namespace BoscComa.AppERP
             }
             
             TokenResponse tokenResponse = Login(connection,"Patata1234");
-            ConnectionRedis connectionRedis = ConnectionRedis.Inicialitzar("localhost");
-            TokenResponseADO tokenResponseADO = new TokenResponseADO();
+            ConnectionRedis.Inicialitzar("localhost");
+            TokenResponseADO tokenResponseADO = new TokenResponseADO(ConnectionRedis.ConnectionDB);
             tokenResponseADO.Save(tokenResponse);
             WriteLine($"Usuari loginejat error: {Login(connection,"Patata12345")?.AccessToken}");
 

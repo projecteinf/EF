@@ -8,10 +8,14 @@ using NRedisStack.RedisStackCommands;
 using StackExchange.Redis;
 
 public class TokenResponseADO {
-        private readonly IConnection _connection;
-        public TokenResponseADO(IConnection connection)
+        private readonly IConnection<ConnectionMultiplexer> _connection;
+        public TokenResponseADO(IConnection<ConnectionMultiplexer> connection)
         {
             _connection = connection;
         }
         
+        public  bool Save(TokenResponse tokenResponse)
+        {
+            return true;
+        }
 }

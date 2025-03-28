@@ -12,13 +12,14 @@ using StackExchange.Redis;
 
 namespace BoscComa.ADO
 {
-    public class ConnectionRedis : IConnection
+    public class ConnectionRedis : IConnection<ConnectionMultiplexer>
     {
         public static ConnectionRedis? _connectionDB;
         public ConnectionMultiplexer ConnectionRedisDB;        
         private ConnectionRedis(string connectionString) 
         {
-            this.ConnectionRedisDB = connectionMultiplexer.Connect(connectionString);
+            ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect(connectionString);
+            this.ConnectionRedisDB = connectionMultiplexer;
             // IDatabase db = connectionMultiplexer.GetDatabase();
         }
         public static void Inicialitzar(string connectionString) 

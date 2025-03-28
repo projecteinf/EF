@@ -6,9 +6,9 @@ namespace BoscComa.ADO
 {
     public class ItemADO
     {
-        private readonly IConnection _connection;
+        private readonly IConnection<SqlConnection> _connection;
 
-        public ItemADO(IConnection connection)
+        public ItemADO(IConnection<SqlConnection> connection)
         {
             _connection = connection;
         }

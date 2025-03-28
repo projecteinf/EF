@@ -14,8 +14,20 @@ public class TokenResponseADO {
             _connection = connection;
         }
         
-        public  bool Save(TokenResponse tokenResponse)
+        public async void Save(TokenResponse token)
         {
-            return true;
+            
+            string key = $"refresh:{token.RefreshToken}";
+            IDatabase db = this._connection.GetConnection();
+
+            await db.HashSetAsync(key, new HashEntry[]
+            {
+                //new HashEntry("user_id", userId),
+                //new HashEntry("ip", userIp),
+                new HashEntry("expires", DateTime.UtcNow.AddDays(7).ToString("o"))
+            });
+
+            await db.KeyExpireAsync(key, TimeSpan.FromDays(7));
         }
+
 }

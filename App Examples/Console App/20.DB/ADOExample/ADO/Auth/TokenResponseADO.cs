@@ -8,8 +8,8 @@ using NRedisStack.RedisStackCommands;
 using StackExchange.Redis;
 
 public class TokenResponseADO {
-        private readonly IConnection<ConnectionMultiplexer> _connection;
-        public TokenResponseADO(IConnection<ConnectionMultiplexer> connection)
+        private readonly IConnection<IDatabase> _connection;
+        public TokenResponseADO(IConnection<IDatabase> connection)
         {
             _connection = connection;
         }

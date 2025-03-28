@@ -12,15 +12,14 @@ using StackExchange.Redis;
 
 namespace BoscComa.ADO
 {
-    public class ConnectionRedis : IConnection<ConnectionMultiplexer>
+    public class ConnectionRedis : IConnection<IDatabase>
     {
         public static ConnectionRedis? _connectionDB;
-        public ConnectionMultiplexer ConnectionRedisDB;        
+        public IDatabase RedisDB;        
         private ConnectionRedis(string connectionString) 
         {
             ConnectionMultiplexer connectionMultiplexer = ConnectionMultiplexer.Connect(connectionString);
-            this.ConnectionRedisDB = connectionMultiplexer;
-            // IDatabase db = connectionMultiplexer.GetDatabase();
+            this.RedisDB = connectionMultiplexer.GetDatabase(); // Connexió amb la base de dades 0
         }
         public static void Inicialitzar(string connectionString) 
         {
@@ -49,9 +48,9 @@ namespace BoscComa.ADO
         {
             
         }
-        public ConnectionMultiplexer GetConnection()
+        public IDatabase GetConnection()
         {
-            return this.ConnectionRedisDB;
+            return this.RedisDB;
         }
     }
 }

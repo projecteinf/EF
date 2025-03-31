@@ -1,3 +1,4 @@
 .vscode
 App Examples/Console App/20.DB/ADO/Config/Key.aes
 App Examples/Console App/20.DB/ADO/Config/IV.aes
+Docker/redisdb/dump.rdb

@@ -63,8 +63,6 @@ namespace BoscComa.AppERP
             usersDTO = GetViewUsers(connection, mapper);
             ViewData(usersDTO);
             bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
-            
-            
         }
         private static IMapper ConfigMapper()
         {

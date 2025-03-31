@@ -63,7 +63,7 @@ namespace BoscComa.AppERP
             ViewData(usersDTO.Where(new Func<UserDTO, bool> (Selected)).ToList());
             bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
             usersDTO = GetViewUsers(connection, mapper);
-            ViewData(usersDTO);
+            ViewData(usersDTO.Where(userDTO => userDTO.Uuid.Contains("d4")).ToList());
             bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
         }
         private static bool Selected(UserDTO userDTO) {

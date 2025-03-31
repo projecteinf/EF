@@ -8,6 +8,7 @@
 ///         dotnet add package Docker.DotNet
 /// 
 using System;
+using System.Linq;
 using AutoMapper;
 using System.Collections;
 using Microsoft.Data.SqlClient;
@@ -58,11 +59,15 @@ namespace BoscComa.AppERP
 
             // await Utils.StartDocker("sqlserver");   
             List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
-            ViewData(usersDTO);
+
+            ViewData(usersDTO.Where(new Func<UserDTO, bool> (Selected)).ToList());
             bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
             usersDTO = GetViewUsers(connection, mapper);
             ViewData(usersDTO);
             bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
+        }
+        private static bool Selected(UserDTO userDTO) {
+            return userDTO.Uuid.Contains("d4");
         }
         private static IMapper ConfigMapper()
         {

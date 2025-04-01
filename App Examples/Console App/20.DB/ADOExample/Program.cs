@@ -64,7 +64,8 @@ namespace BoscComa.AppERP
             bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
             usersDTO = GetViewUsers(connection, mapper);
             ViewData(usersDTO.Where(userDTO => userDTO.Uuid.Contains("d4"))
-                    .OrderBy(userDTO => userDTO.Uuid).ToList());
+                    .OrderBy(userDTO => userDTO.Uuid)
+                    .ThenBy(usersDTO => usersDTO.Name).ToList());
             bool errorCreatingItem = CreateItem(connection,usersDTO[0].Uuid);
         }
         private static bool Selected(UserDTO userDTO) {

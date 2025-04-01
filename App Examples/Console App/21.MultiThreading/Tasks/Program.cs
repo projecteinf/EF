@@ -14,7 +14,33 @@ class Program {
         MethodC();
         WriteLine($"Temps síncron: {timerSincron.ElapsedMilliseconds} ms"); */
         ExecuteAll();
-        
+        DependenciaExecucio();
+    }
+    static void DependenciaExecucio()
+    {
+        WriteLine("Passar el valor d'una tasca a una altra tasca");
+        var taskGetProducts = Task.Factory.StartNew(CallWebService)
+            .ContinueWith(
+                previousTaks => 
+                    CallStoreProcedure(previousTaks.Result)
+            );
+        WriteLine(taskGetProducts.Result);
+    }
+
+    static decimal CallWebService()
+    {
+        WriteLine("Crida a CallWebService iniciada");
+        Thread.Sleep((new Random()).Next(2000,4000));
+        WriteLine("Crida a CallWebService finalitzada");
+        return 89.99M;
+    }
+
+    static string CallStoreProcedure(decimal amount)
+    {
+        WriteLine("Crida a Store Procedure. Obtenir dades de la base de dades a partir d'amount");
+        Thread.Sleep((new Random()).Next(2000,4000));
+        WriteLine("Crida a CallWebService finalitzada");
+        return $"Productes: a,b,x,z amb preu superior a {amount}";
     }
     static void ExecuteAll() 
     {

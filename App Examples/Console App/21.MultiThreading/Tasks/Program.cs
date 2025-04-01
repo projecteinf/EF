@@ -21,8 +21,9 @@ class Program {
         Task taskB = Task.Factory.StartNew(MethodB);
         Task taskC = Task.Run(new Action(MethodC));
         Task[] tasks = [ taskA, taskB, taskC];
-        Task.WaitAll(tasks);
+        // Task.WaitAll(tasks);
         WriteLine($"Temps paral·lel: {timerParallel.ElapsedMilliseconds} ms");
+        Task.WaitAll(tasks);
     }
     static void MethodA()
     {

@@ -7,12 +7,21 @@ using static System.Console;
 
 class Program {
     static void Main() {
-        var timer = Stopwatch.StartNew();
+        var timerSincron = Stopwatch.StartNew();
         WriteLine("Execució síncrona");
         MethodA();
         MethodB();
         MethodC();
-        WriteLine($"Temps síncron: {timer.ElapsedMilliseconds} ms");
+        WriteLine($"Temps síncron: {timerSincron.ElapsedMilliseconds} ms");
+        
+        var timerParallel = Stopwatch.StartNew();
+        WriteLine("Execució paral·lela");
+        Task taskA = new Task(MethodA);
+        taskA.Start();
+        Task taskB = Task.Factory.StartNew(MethodB);
+        Task taskC = Task.Run(new Action(MethodC));
+        WriteLine($"Temps paral·lel: {timerParallel.ElapsedMilliseconds} ms");
+
     }
     static void MethodA()
     {

@@ -13,7 +13,11 @@ class Program {
         MethodB();
         MethodC();
         WriteLine($"Temps síncron: {timerSincron.ElapsedMilliseconds} ms"); */
+        ExecuteAll();
         
+    }
+    static void ExecuteAll() 
+    {
         var timerParallel = Stopwatch.StartNew();
         WriteLine("Execució paral·lela");
         Task taskA = new Task(MethodA);

@@ -60,7 +60,7 @@ namespace BoscComa.AppERP
             // await Utils.StartDocker("sqlserver");   
             List<UserDTO> usersDTO = GetViewUsers(connection, mapper);
 
-            ViewData(usersDTO.Where(new Func<UserDTO, bool> (Selected)).ToList());
+            ViewData(usersDTO.Where((Selected)).ToList());
             bool errorUpdatingUser = UpdateUser(usersDTO[0],connection,mapper);
             usersDTO = GetViewUsers(connection, mapper);
             ViewData(usersDTO.Where(userDTO => userDTO.Uuid.Contains("d4")).ToList());

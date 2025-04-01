@@ -121,7 +121,9 @@ Quan creis les teves pròpies classes per a la gestió d'errors inclou en la mat
 Sempre que rebem informació externa, cal depurar bé les dades. Per exemple, utilitzar trim per eliminar espais no significatius.
 # Registre i autenticació d'usuaris
 Quan un usuari es registra, hem de fer un hash del seu password. D'aquesta forma, si es roba la base de dades no poden saber els passwords dels usuaris: que es solen repetir entre els diferents sistemes. El xifratge del password no el fa immune a atacs de diccionari: si dos usuaris utilitzen el mateix password (ex: 123456, password, 12345678, qwerty,... ) tindran el mateix hash. Si hi ha dos passwords iguals (mateix hash) segurament és un password usat habitualment (diccionari). Una bona estratègia és generar un **salt** (cadena de text) que concatenarem al password. Guardarem el salt amb el password xifrat (hash) a la base de dades. D'aquesta forma, tots els hash de la base de dades seran diferents! Per a verificar les credencials, haurem de tornar a concatenar el password introduït per l'usuari amb la cadena de salt emmagatzemada a la base de dades (per obtenir el hash associat al password).  
-# Hash
-Evitar MD5 i SHA1 coma a algoritmes de Hash. Escollir mides de hash més grans per evitar possibles colisions.
+# Hash  
+Evitar MD5 i SHA1 coma a algoritmes de Hash. Escollir mides de hash més grans per evitar possibles colisions.  
 # Connexió amb base de dades
-Encara que s'utilitzi un patró de Singleton per a establir la connexió a la base de dades (no utilitzem using per a connectar amb la base de dades), és bona pràctica Obrir la connexió quan es requereixi i tornar-la a tancar quan ja no sigui necessari.
+Encara que s'utilitzi un patró de Singleton per a establir la connexió a la base de dades (no utilitzem using per a connectar amb la base de dades), és bona pràctica Obrir la connexió quan es requereixi i tornar-la a tancar quan ja no sigui necessari.  
+# Multitasking  
+Més threads no implica sempre un millor rendiment. Cal executar el codi sense threads i amb threads i mesurar el temps per a tenir la certesa de la millor solució. Els tests de rendiment, s'han d'executar en entorns el més semblants possibles al de producció.

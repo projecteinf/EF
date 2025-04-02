@@ -53,7 +53,7 @@ class Program {
         Task[] tasks = [ taskA, taskB, taskC];
         // Task.WaitAll(tasks);
         WriteLine($"Temps paral·lel: {timerParallel.ElapsedMilliseconds} ms");
-        Task.WaitAll(tasks);
+        Task.WaitAll(tasks); // NO UTILITZAR - BLOQUEJA FIL PRINCIPAL!!
     }
     static void MethodA()
     {

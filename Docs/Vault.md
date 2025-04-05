@@ -19,6 +19,14 @@ En moltes aplicacions, les credencials (contrasenyes, claus d'API, tokens d'acc�
 
 Vault pot funcionar en local (com veuràs en aquest manual) o en entorns cloud. Aquest document explica com utilitzar-lo en local amb Docker i dades persistents.
 
+### Comparació: guardar secrets en fitxer xifrat vs. usar Vault
+
+| Mètode                            | Avantatges                            | Inconvenients                                                   |
+|-----------------------------------|----------------------------------------|-----------------------------------------------------------------|
+| **String xifrat en fitxer**       | Fàcil d'implementar                    | Claus d'encriptació han d'estar accessibles, risc de filtració |
+| **Vault (o secret manager)**      | Xifrat + control d'accés + auditories | Més complex, requereix desplegament i manteniment              |
+
+
 ## 1. Crear un volum Docker
 ```bash
 docker volume create vault-data

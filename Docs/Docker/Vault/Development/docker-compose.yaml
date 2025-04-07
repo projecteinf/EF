@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  vault-volume-fix:
+    image: busybox
+    container_name: vault-volume-fix
+    command: chown -R 100:100 /vault/data
+    volumes:
+      - vault-data:/vault/data
+    restart: "no"
+
+  vault:
+    image: hashicorp/vault:1.19.1
+    container_name: vault
+    cap_add:
+      - IPC_LOCK
+    ports:
+      - "8200:8800"
+    environment:
+      VAULT_LOCAL_CONFIG: |
+        {
+          "storage": {
+            "file": {
+              "path": "/vault/data"
+            }
+          },
+          "listener": {
+            "tcp": {
+              "address": "0.0.0.0:8800",
+              "tls_disable": 1
+            }
+          }
+        }
+    volumes:
+      - vault-data:/vault/data
+    depends_on:
+      - vault-volume-fix
+
+volumes:
+  vault-data:

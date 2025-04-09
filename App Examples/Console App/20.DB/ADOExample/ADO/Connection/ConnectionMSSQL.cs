@@ -33,7 +33,7 @@ namespace BoscComa.ADO
             {
                 if (MSSQLConnection._connectionDB == null) 
                 {
-                    throw new InvalidOperationException("La connexió no ha estat inicialitzada. Crida Initialize() primer.");
+                    throw new InvalidOperationException("La connexió no ha estat inicialitzada. Crida Inicialitzar() primer.");
                 }
                 return MSSQLConnection._connectionDB; 
             }

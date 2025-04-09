@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+    Instal·lació paquets
+        dotnet add package Newtonsoft.json 2017  
+        dotnet add package Microsoft.Data.SqlClient
+*/ 
+
+
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json.Linq;

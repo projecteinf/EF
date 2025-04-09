@@ -4,12 +4,6 @@ export VAULT_SKIP_VERIFY=true # Només si tens un certificat no vàlid
 TOKEN=$(grep token init.json | cut -d":" -f2 | cut -d"\"" -f2)
 UNSEAL_KEY=$(grep unseal_keys_b64 -a1 init.json | tail -n1 | cut -d "\"" -f2)
 
-
 vault operator unseal $UNSEAL_KEY
-
-
 vault login $TOKEN
-# vault secrets enable -path=secrets kv
-
-
 vault kv get -field=password secrets/config/mssql

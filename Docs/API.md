@@ -1,11 +1,9 @@
 # API (Application Porgramming Interface)  
-- ‘An API is a web service: It delivers resources via web technologies such as HTTP. APIs are used for building distributed software systems and enable loose coupling.
-- An API is simple, clean, clear and approachable: It is like a socket that different apps can connect to easily, just like different appliances are plugged into an electricity socket. 
-- An API provides a bridge between company-internal data providers and company-external data consumers.’
-—Biehl, Matthias, “API Architecture”
+Sistema d'intercanvi d'informació a través de tecnologies web (http).
+## Característiques
+- No hi ha interfície d'usuari.  
+- Simples i eficients.
 
-
-There are many categories of APIs, SOAP, XML-RPC, JSON-RPC, REST, and so on. APIs can be developed with any programming language such as Java, .NET, and many more.  
 # SOA
 SOA is essentially a collection of services, those services communicate with each other, and a service is an operation or a function that is well defined, self-contained, and independent of other service contexts and states. Services are applications hosted on application servers and interact with other applications through interfaces.  
 SOA is not a technology or a programming language; it's a set of principles, procedures, and methodologies to develop a software application.  

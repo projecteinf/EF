@@ -3,8 +3,13 @@ Sistema d'intercanvi d'informació a través de tecnologies web (http).
 ## Característiques
 - No hi ha interfície d'usuari.  
 - Simples i eficients.
+- Fàcils d'utilitzar (pels desenvolupadors).
+- Integració en l'aplicació.  
 ## Necessitat
-- Connexió controlada a sistemes externs.  
+- Connexió controlada a sistemes externs.
+- Desenvolupament aplicacions mòbil.
+## Elements
+- Contracte: descripció de l'API.  
 # SOA
 SOA is essentially a collection of services, those services communicate with each other, and a service is an operation or a function that is well defined, self-contained, and independent of other service contexts and states. Services are applications hosted on application servers and interact with other applications through interfaces.  
 SOA is not a technology or a programming language; it's a set of principles, procedures, and methodologies to develop a software application.  

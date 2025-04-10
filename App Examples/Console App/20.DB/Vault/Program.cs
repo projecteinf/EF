@@ -17,68 +17,25 @@
 
 
 using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Net.Security;
-using System.Security.Cryptography.X509Certificates;
-using Newtonsoft.Json.Linq;
-using Microsoft.Data.SqlClient;
+using System.Threading.Tasks;
+using BoscComa.ADO;
 
 class Program
 {
-    static async System.Threading.Tasks.Task Main(string[] args)
+    static async Task Main(string[] args)
     {
-        string vaultToken = "hvs.qj8dN3I23ylUkPJHncl4Wpu6"; // El teu token root
-        string vaultAddress = "https://127.0.0.1:8200";     // L'adreça del teu Vault
-        string secretPath = "secrets/config/mssql";       // Ruta on Vault exposa les credencials
+        MSSQLConnectionVault connection = await ConnectToDB();
+        connection.Obrir();
 
-        HttpClientHandler handler = new HttpClientHandler
-        {
-            
-            ServerCertificateCustomValidationCallback = (message, cert, chain, sslPolicyErrors) =>
-            {
-                const string expectedThumbprint = "04E6380CD5F962E7BC39944564E30F0292708090";
-                if (sslPolicyErrors == SslPolicyErrors.None)
-                {
-                    return true;
-                }
-                string actualThumbprint = cert?.GetCertHashString()?.ToUpperInvariant();
-                return actualThumbprint == expectedThumbprint;
-            }
-        };
+        Console.WriteLine("Connexió establerta!");
+    }
 
-        using (HttpClient client = new HttpClient(handler))
-        {
-            client.BaseAddress = new Uri(vaultAddress);
-            client.DefaultRequestHeaders.Add("X-Vault-Token", vaultToken);
+    private static async Task<MSSQLConnectionVault> ConnectToDB()
+    {
+        string vaultToken = "hvs.qj8dN3I23ylUkPJHncl4Wpu6"; // Token root
 
-            HttpResponseMessage response = await client.GetAsync($"/v1/{secretPath}");
-
-            if (response.IsSuccessStatusCode)
-            {
-                string json = await response.Content.ReadAsStringAsync();
-                JObject data = JObject.Parse(json)["data"] as JObject;
-
-                string username = data["username"].ToString();
-                string password = data["password"].ToString();
-
-                Console.WriteLine($"Usuari: {username}");
-                Console.WriteLine($"Password: {password}");
-
-                // Connexió a la base de dades
-                string connectionString = $"Server=localhost;Database=dbDemo;User Id={username};Password={password};TrustServerCertificate=True;";
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    Console.WriteLine("Connexió amb èxit!");
-                }
-            }
-            else
-            {
-                Console.WriteLine($"Error accedint a Vault: {response.StatusCode}");
-            }
-        }
+        await MSSQLConnectionVault.InicialitzarAsync(vaultToken);
+        return MSSQLConnectionVault.ConnectionDB;
     }
 }
 

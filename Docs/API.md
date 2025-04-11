@@ -21,7 +21,8 @@ Sistema d'intercanvi d'informació a través de tecnologies web (http).
 - Eficient.
 - Disponible.  
 ## Aplicacions mòbils.  
-Capacitat de processament reduïda
+Capacitat de processament reduïda.  
+Emmagatzematge de dades reduït.  
 ### Característiques API.   
 - Lleugeres.
 - Dades fraccionades (partitioned).  

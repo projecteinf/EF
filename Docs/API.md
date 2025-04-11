@@ -34,8 +34,8 @@ Emmagatzematge de dades reduït.
 - Utilitzar una API existent o crear-ne una de nova.  
 ## Com escollir una API d'un tercer.  
 - Trobar-la!  
-- Aprendre sobre el seu funcionament: canvis, versions, estabilitat (servei), gratuïta,...
-- Testejar-la.
+- Aprendre sobre el seu funcionament: canvis, versions, gratuïta,...
+- Testejar-la: estabilitat, rendiment, seguretat.  
 - Utilitzar-la.
 # SOA
 SOA is essentially a collection of services, those services communicate with each other, and a service is an operation or a function that is well defined, self-contained, and independent of other service contexts and states. Services are applications hosted on application servers and interact with other applications through interfaces.  

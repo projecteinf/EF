@@ -6,8 +6,9 @@ Sistema d'intercanvi d'informació a través de tecnologies web (http).
 - Fàcils d'utilitzar (pels desenvolupadors).
 - Integració en l'aplicació.  
 ## Necessitat  
-- Connexió controlada a sistemes externs.
-- Desenvolupament aplicacions mòbil.
+- Connexió controlada a sistemes externs.  
+- Desenvolupament aplicacions mòbil.  
+- Compartició de dades entre múltiples dispositius (carret de la compra).  
 ## Elements  
 - Contracte: descripció de l'API.
 ## Requisits  

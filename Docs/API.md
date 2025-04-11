@@ -1,5 +1,9 @@
 # API (Application Porgramming Interface)    
-Sistema d'intercanvi d'informació a través de tecnologies web (http).
+Sistema d'intercanvi d'informació a través de tecnologies web (http).  
+- Encapsulació de la lògica de negoci.  
+- Emmagatzematge persistent de la informació.
+- Emmagatzematge de dades sensibles (tokens).
+- Accés a dades en temps real.  
 ## Característiques  
 - No hi ha interfície d'usuari.  
 - Simples i eficients.

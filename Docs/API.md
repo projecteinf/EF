@@ -34,7 +34,7 @@ Emmagatzematge de dades reduït.
 - Utilitzar una API existent o crear-ne una de nova.  
 ## Com escollir una API d'un tercer.  
 - Trobar-la!  
-- Aprendre sobre el seu funcionament.
+- Aprendre sobre el seu funcionament: canvis, versions, estabilitat (servei), gratuïta,...
 - Testejar-la.
 - Utilitzar-la.
 # SOA

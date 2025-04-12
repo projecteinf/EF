@@ -37,9 +37,10 @@ Emmagatzematge de dades reduït.
 - Aprendre sobre el seu funcionament: canvis, versions, gratuïta,...
 - Testejar-la: estabilitat, rendiment, seguretat.  
 - Utilitzar-la.
-# Interaccions entre plataformes
+## Interaccions entre plataformes
 ![API Architecture](https://github.com/user-attachments/assets/1f753713-cdb0-4deb-b324-ffe81c1b04f5)
-
+## Arquitectura
+![API Architecture](https://github.com/user-attachments/assets/efab85c9-a200-44ea-adeb-62c383e9fb3b)
 
 # SOA
 SOA is essentially a collection of services, those services communicate with each other, and a service is an operation or a function that is well defined, self-contained, and independent of other service contexts and states. Services are applications hosted on application servers and interact with other applications through interfaces.  
